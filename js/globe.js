@@ -1,6 +1,6 @@
 /* ============================================================
-   ANTOINE PORNIN — GLOBE.JS
-   Three.js interactive globe with location pins
+   ANTOINE PORNIN — GLOBE.JS v2
+   Real Earth texture · Pin labels · Expand modal · Shift + panel
    ============================================================ */
 
 (function () {
@@ -10,57 +10,65 @@
   const LOCATIONS = [
     {
       id: 'jinhua',
-      name: 'Jinhua, Chine',
-      lat: 29.1,
-      lon: 119.6,
+      name: 'Jinhua',
+      fullName: 'Jinhua, Chine',
+      lat: 29.1, lon: 119.6,
       type: 'Stage international',
-      tagline: 'Digital communication in China',
-      color: '#4B9FFF',
-      colorHex: 0x4B9FFF,
-      desc: 'Stage de 16 semaines en communication digitale internationale — création de vidéos courtes, adaptation interculturelle des argumentaires commerciaux, analyse TikTok / social commerce pour les marchés export.',
-      skills: ['Social commerce', 'Adaptation interculturelle', 'Création contenu', 'Anglais pro'],
+      typeColor: '#7DD4FC',
+      tagline: 'Développement commercial à l\'export',
+      color: '#7DD4FC',
+      colorHex: 0x7DD4FC,
+      flag: '🇨🇳',
+      desc: 'Stage de 4 mois chez Golden Sun Health Technology Group. Ma mission : développer les ventes à l\'international d\'une entreprise dont l\'activité est jusqu\'ici essentiellement locale. Adaptation interculturelle des argumentaires commerciaux, analyse de marchés étrangers, création de contenus commerciaux pour les marchés export.',
+      skills: ['Développement commercial', 'Adaptation interculturelle', 'Analyse marché export', 'Création de contenu', 'Anglais professionnel'],
     },
     {
       id: 'yiwu',
-      name: 'Yiwu, Chine',
-      lat: 29.3,
-      lon: 121.2, // slightly offset from Jinhua for visibility
-      type: 'Projet entrepreneurial',
-      tagline: 'Sourcing & business bridge',
-      color: '#2DD4BF',
-      colorHex: 0x2DD4BF,
-      desc: 'Projet d\'intermédiation commerciale entre la France et Yiwu, capitale mondiale du sourcing. Présélection de fournisseurs, qualification, comparaison d\'offres, réduction de l\'incertitude pour les entreprises françaises.',
-      skills: ['Sourcing', 'Négociation', 'Commerce France-Chine', 'Veille marché'],
+      name: 'Yiwu',
+      fullName: 'Yiwu, Chine',
+      lat: 29.35, lon: 121.5,
+      type: 'Intermédiation commerciale',
+      typeColor: '#6EE7B7',
+      tagline: 'Pont entre la France et le sourcing chinois',
+      color: '#6EE7B7',
+      colorHex: 0x6EE7B7,
+      flag: '🇨🇳',
+      desc: 'Intermédiaire commercial entre la France et Yiwu, la capitale mondiale du sourcing. J\'identifie et qualifie des fournisseurs pour des entreprises françaises : présélection, comparaison d\'offres, réduction de l\'incertitude avant d\'engager un partenariat avec un fournisseur chinois.',
+      skills: ['Sourcing', 'Qualification fournisseurs', 'Commerce France–Chine', 'Veille marché', 'Négociation'],
     },
     {
       id: 'issoudun',
-      name: 'Issoudun, France',
-      lat: 46.9,
-      lon: 2.0,
+      name: 'Issoudun',
+      fullName: 'Issoudun, France',
+      lat: 46.95, lon: 2.0,
       type: 'Formation',
-      tagline: 'Commercial foundation',
-      color: '#FBB040',
-      colorHex: 0xFBB040,
-      desc: 'BUT Techniques de Commercialisation, option Commerce International à l\'IUT de l\'Indre. Environnement économique marqué par Safran et Louis Vuitton à proximité. Bases solides en marketing, vente, négociation et gestion de projet.',
-      skills: ['Marketing', 'Vente', 'Négociation', 'Gestion de projet'],
+      typeColor: '#FCD34D',
+      tagline: 'Socle commercial & académique',
+      color: '#FCD34D',
+      colorHex: 0xFCD34D,
+      flag: '🇫🇷',
+      desc: 'BUT Techniques de Commercialisation, option Commerce International à l\'IUT de l\'Indre. Environnement économique fort, avec la présence de Safran et Louis Vuitton à proximité. Bases solides en marketing, vente, négociation, analyse de marché et gestion de projet.',
+      skills: ['Marketing', 'Vente', 'Négociation', 'Analyse commerciale', 'Gestion de projet'],
     },
     {
       id: 'stgeorgen',
-      name: 'Sankt Georgen, Allemagne',
-      lat: 48.1,
-      lon: 8.3,
+      name: 'Sankt Georgen',
+      fullName: 'Sankt Georgen, Allemagne',
+      lat: 48.13, lon: 8.34,
       type: 'Expérience internationale',
-      tagline: 'Football abroad',
-      color: '#A78BFA',
-      colorHex: 0xA78BFA,
-      desc: 'Expérience à l\'étranger au Gymnasium de Sankt Georgen dans le cadre du football. Changer de pays pour poursuivre une opportunité : adaptation, autonomie, discipline et intégration dans un nouvel environnement culturel.',
-      skills: ['Adaptabilité', 'Autonomie', 'Allemand', 'Dépassement de soi'],
+      typeColor: '#C4B5FD',
+      tagline: 'Changer de pays pour grandir',
+      color: '#C4B5FD',
+      colorHex: 0xC4B5FD,
+      flag: '🇩🇪',
+      desc: 'Expérience à l\'étranger au Gymnasium de Sankt Georgen dans le cadre du football. Changer de pays pour poursuivre une opportunité : adaptation rapide, autonomie, discipline et intégration dans un environnement culturel différent. Une étape qui a forgé ma capacité d\'adaptation et mon ouverture internationale.',
+      skills: ['Adaptabilité', 'Autonomie', 'Allemand B1/B2', 'Discipline sportive', 'Ouverture interculturelle'],
     },
   ];
 
   /* ── UTILS ──────────────────────────────────────────────── */
   function latLonToVec3(lat, lon, r) {
-    const phi   = (90 - lat) * (Math.PI / 180);
+    const phi   = (90 - lat)  * (Math.PI / 180);
     const theta = (lon + 180) * (Math.PI / 180);
     return new THREE.Vector3(
       -r * Math.sin(phi) * Math.cos(theta),
@@ -70,55 +78,57 @@
   }
 
   /* ── GLOBE CLASS ────────────────────────────────────────── */
-  class Globe {
-    constructor(containerId) {
-      this.container = document.getElementById(containerId);
+  class EarthGlobe {
+    constructor() {
+      this.container  = document.getElementById('globe-three-container');
+      this.labelsWrap = document.getElementById('pin-labels');
       if (!this.container || typeof THREE === 'undefined') return;
 
-      this.isDragging   = false;
-      this.prevMouse    = { x: 0, y: 0 };
-      this.rotY         = 0.5;  // start slightly rotated so Europe is visible
-      this.rotX         = 0.1;
-      this.velX         = 0;
-      this.velY         = 0;
-      this.autoRotate   = true;
-      this.autoTimer    = null;
-      this.pinMeshes    = [];
-      this.clock        = new THREE.Clock();
+      this.isDragging  = false;
+      this.prevMouse   = { x: 0, y: 0 };
+      this.dragStart   = { x: 0, y: 0 };
+      this.rotY        = -0.4; // initial rotation so Europe is visible
+      this.rotX        =  0.12;
+      this.velX        = 0;
+      this.velY        = 0;
+      this.autoRotate  = true;
+      this.autoTimer   = null;
+      this.pinMeshes   = [];
+      this.pinLabels   = [];
+      this.pulseRings  = [];
+      this.clock       = new THREE.Clock();
+      this.activePin   = null;
 
       this.init();
       this.buildScene();
-      this.buildGlobe();
+      this.buildEarth();
       this.buildPins();
+      this.buildLabels();
       this.setupLights();
       this.bindEvents();
       this.animate();
     }
 
-    /* Setup renderer / scene / camera */
+    /* ── SETUP ─────────────────────────────────────────────── */
     init() {
       const w = this.container.offsetWidth  || 500;
       const h = this.container.offsetHeight || 500;
 
       this.scene    = new THREE.Scene();
-      this.camera   = new THREE.PerspectiveCamera(42, w / h, 0.1, 100);
-      this.camera.position.z = 2.75;
+      this.camera   = new THREE.PerspectiveCamera(40, w / h, 0.1, 100);
+      this.camera.position.z = 2.8;
 
       this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
       this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       this.renderer.setSize(w, h);
       this.renderer.setClearColor(0x000000, 0);
-      this.renderer.domElement.style.position = 'absolute';
-      this.renderer.domElement.style.inset    = '0';
-      this.renderer.domElement.style.width    = '100%';
-      this.renderer.domElement.style.height   = '100%';
+      this.renderer.domElement.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;';
       this.container.appendChild(this.renderer.domElement);
 
       this.raycaster = new THREE.Raycaster();
       this.mouse     = new THREE.Vector2();
     }
 
-    /* Main globe group */
     buildScene() {
       this.globeGroup = new THREE.Group();
       this.scene.add(this.globeGroup);
@@ -126,44 +136,48 @@
       this.globeGroup.rotation.x = this.rotX;
     }
 
-    buildGlobe() {
-      /* ── Solid sphere ── */
+    buildEarth() {
+      /* Main sphere with Earth texture */
+      const loader = new THREE.TextureLoader();
+      loader.crossOrigin = 'anonymous';
+
+      /* Earth day texture — free CDN */
+      const earthTex = loader.load(
+        'https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/land_ocean_ice_cloud_2048.jpg',
+        undefined,
+        undefined,
+        () => {
+          // Fallback material if texture fails
+          sphere.material.color.set(0x1a4b8c);
+        }
+      );
+
       const sGeo = new THREE.SphereGeometry(1, 72, 72);
       const sMat = new THREE.MeshPhongMaterial({
-        color:     0x080E28,
-        emissive:  0x040810,
-        shininess: 18,
-        transparent: true,
-        opacity: 0.96,
+        map:       earthTex,
+        shininess: 8,
+        specular:  new THREE.Color(0x111122),
       });
-      this.globeGroup.add(new THREE.Mesh(sGeo, sMat));
+      const sphere = new THREE.Mesh(sGeo, sMat);
+      this.globeGroup.add(sphere);
+      this.earthMesh = sphere;
 
-      /* ── Lat/lon wireframe ── */
-      const wGeo = new THREE.SphereGeometry(1.003, 24, 24);
-      const wMat = new THREE.MeshBasicMaterial({
-        color:       0x4B9FFF,
-        wireframe:   true,
-        transparent: true,
-        opacity:     0.055,
-      });
-      this.globeGroup.add(new THREE.Mesh(wGeo, wMat));
-
-      /* ── Atmosphere glow (backside shell) ── */
-      const atmGeo = new THREE.SphereGeometry(1.12, 36, 36);
+      /* Atmosphere glow shell */
+      const atmGeo = new THREE.SphereGeometry(1.08, 40, 40);
       const atmMat = new THREE.MeshBasicMaterial({
-        color:       0x2A6FD6,
+        color:       0x4488FF,
         transparent: true,
-        opacity:     0.045,
+        opacity:     0.06,
         side:        THREE.BackSide,
       });
       this.globeGroup.add(new THREE.Mesh(atmGeo, atmMat));
 
-      /* ── Outer glow ring ── */
-      const rimGeo = new THREE.SphereGeometry(1.18, 24, 24);
+      /* Outer soft glow */
+      const rimGeo = new THREE.SphereGeometry(1.16, 24, 24);
       const rimMat = new THREE.MeshBasicMaterial({
-        color:       0x1A4B8C,
+        color:       0x2255AA,
         transparent: true,
-        opacity:     0.018,
+        opacity:     0.022,
         side:        THREE.BackSide,
       });
       this.globeGroup.add(new THREE.Mesh(rimGeo, rimMat));
@@ -172,79 +186,86 @@
     buildPins() {
       this.pinsGroup = new THREE.Group();
       this.globeGroup.add(this.pinsGroup);
-      this.pulseRings = [];
 
-      LOCATIONS.forEach((loc) => {
+      LOCATIONS.forEach((loc, i) => {
         const pos = latLonToVec3(loc.lat, loc.lon, 1.015);
 
-        /* Dot */
+        /* Pin sphere */
         const dotGeo = new THREE.SphereGeometry(0.022, 16, 16);
         const dotMat = new THREE.MeshBasicMaterial({ color: loc.colorHex });
         const dot    = new THREE.Mesh(dotGeo, dotMat);
         dot.position.copy(pos);
-        dot.userData = loc;
+        dot.userData = { ...loc, index: i };
         this.pinsGroup.add(dot);
         this.pinMeshes.push(dot);
 
-        /* Glow halo (slightly larger, transparent) */
-        const haloGeo = new THREE.SphereGeometry(0.038, 16, 16);
-        const haloMat = new THREE.MeshBasicMaterial({
-          color: loc.colorHex, transparent: true, opacity: 0.18,
-        });
-        const halo = new THREE.Mesh(haloGeo, haloMat);
+        /* Glow halo */
+        const haloGeo = new THREE.SphereGeometry(0.04, 16, 16);
+        const haloMat = new THREE.MeshBasicMaterial({ color: loc.colorHex, transparent: true, opacity: 0.20 });
+        const halo    = new THREE.Mesh(haloGeo, haloMat);
         halo.position.copy(pos);
         this.pinsGroup.add(halo);
 
-        /* Pulse ring (flat torus oriented outward) */
-        const ringGeo = new THREE.TorusGeometry(0.045, 0.003, 8, 32);
-        const ringMat = new THREE.MeshBasicMaterial({
-          color: loc.colorHex, transparent: true, opacity: 0.55,
-        });
-        const ring = new THREE.Mesh(ringGeo, ringMat);
+        /* Pulse ring (torus) */
+        const ringGeo = new THREE.TorusGeometry(0.048, 0.003, 8, 36);
+        const ringMat = new THREE.MeshBasicMaterial({ color: loc.colorHex, transparent: true, opacity: 0.55 });
+        const ring    = new THREE.Mesh(ringGeo, ringMat);
         ring.position.copy(pos);
-
-        // orient ring to face outward (normal = surface normal = position.normalize)
-        ring.lookAt(new THREE.Vector3(0, 0, 0));
+        // Orient ring to face outward
+        ring.lookAt(new THREE.Vector3(0,0,0));
         ring.rotateX(Math.PI / 2);
-
-        ring.userData.basePos = pos.clone();
-        ring.userData.phase   = Math.random() * Math.PI * 2;
+        ring.userData.phase = i * (Math.PI / 2);
         this.pinsGroup.add(ring);
         this.pulseRings.push(ring);
       });
     }
 
-    setupLights() {
-      const ambient = new THREE.AmbientLight(0xffffff, 0.25);
-      this.scene.add(ambient);
+    buildLabels() {
+      if (!this.labelsWrap) return;
+      this.labelsWrap.innerHTML = '';
 
-      const key = new THREE.DirectionalLight(0x6AB8FF, 1.6);
-      key.position.set(3, 2, 2);
-      this.scene.add(key);
-
-      const fill = new THREE.DirectionalLight(0x2DD4BF, 0.5);
-      fill.position.set(-3, -1, -2);
-      this.scene.add(fill);
-
-      const rim = new THREE.DirectionalLight(0xffffff, 0.3);
-      rim.position.set(0, 3, -3);
-      this.scene.add(rim);
+      LOCATIONS.forEach((loc, i) => {
+        const label = document.createElement('div');
+        label.className = 'pin-label';
+        label.dataset.index = i;
+        label.innerHTML = `
+          <div class="pin-label-dot" style="background:${loc.color};color:${loc.color}"></div>
+          <span class="pin-label-text">${loc.name}</span>
+        `;
+        label.addEventListener('click', (e) => {
+          e.stopPropagation();
+          this.openPanel(loc);
+        });
+        this.labelsWrap.appendChild(label);
+        this.pinLabels.push(label);
+      });
     }
 
-    /* ── INTERACTION ─────────────────────────────────────── */
+    setupLights() {
+      this.scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+
+      const sun = new THREE.DirectionalLight(0xfff5E0, 1.4);
+      sun.position.set(5, 3, 5);
+      this.scene.add(sun);
+
+      const fill = new THREE.DirectionalLight(0x8899CC, 0.3);
+      fill.position.set(-3, -2, -3);
+      this.scene.add(fill);
+    }
+
+    /* ── EVENTS ─────────────────────────────────────────────── */
     bindEvents() {
       const canvas = this.renderer.domElement;
 
-      /* Mouse down */
+      /* Mouse drag */
       canvas.addEventListener('mousedown', (e) => {
-        this.isDragging = true;
-        this.autoRotate = false;
+        this.isDragging  = true;
+        this.autoRotate  = false;
         clearTimeout(this.autoTimer);
         this.prevMouse  = { x: e.clientX, y: e.clientY };
         this.dragStart  = { x: e.clientX, y: e.clientY };
       });
 
-      /* Mouse move */
       window.addEventListener('mousemove', (e) => {
         if (!this.isDragging) return;
         this.velY = (e.clientX - this.prevMouse.x) * 0.006;
@@ -256,21 +277,20 @@
         this.prevMouse = { x: e.clientX, y: e.clientY };
       });
 
-      /* Mouse up — detect click vs drag */
       window.addEventListener('mouseup', (e) => {
         if (!this.isDragging) return;
         this.isDragging = false;
-        const dx = Math.abs(e.clientX - (this.dragStart?.x || e.clientX));
-        const dy = Math.abs(e.clientY - (this.dragStart?.y || e.clientY));
-        if (dx < 4 && dy < 4) this._handleClick(e);
-        this.autoTimer = setTimeout(() => { this.autoRotate = true; }, 3500);
+        const dx = Math.abs(e.clientX - this.dragStart.x);
+        const dy = Math.abs(e.clientY - this.dragStart.y);
+        if (dx < 4 && dy < 4) this._castAndOpen(e);
+        this.autoTimer = setTimeout(() => { this.autoRotate = true; }, 4000);
       });
 
-      /* Touch */
+      /* Touch drag */
       canvas.addEventListener('touchstart', (e) => {
         const t = e.touches[0];
-        this.isDragging = true;
-        this.autoRotate = false;
+        this.isDragging  = true;
+        this.autoRotate  = false;
         clearTimeout(this.autoTimer);
         this.prevMouse  = { x: t.clientX, y: t.clientY };
         this.dragStart  = { x: t.clientX, y: t.clientY };
@@ -292,137 +312,164 @@
       canvas.addEventListener('touchend', (e) => {
         this.isDragging = false;
         const t = e.changedTouches[0];
-        const dx = Math.abs(t.clientX - (this.dragStart?.x || t.clientX));
-        const dy = Math.abs(t.clientY - (this.dragStart?.y || t.clientY));
-        if (dx < 10 && dy < 10) this._handleClickTouch(t);
-        this.autoTimer = setTimeout(() => { this.autoRotate = true; }, 3500);
+        const dx = Math.abs(t.clientX - this.dragStart.x);
+        const dy = Math.abs(t.clientY - this.dragStart.y);
+        if (dx < 10 && dy < 10) this._castAndOpenTouch(t);
+        this.autoTimer = setTimeout(() => { this.autoRotate = true; }, 4000);
       });
 
-      /* Hover cursor effect on pins */
+      /* Cursor style */
       canvas.addEventListener('mousemove', (e) => {
         const rect = canvas.getBoundingClientRect();
-        this.mouse.x =  ((e.clientX - rect.left)  / rect.width)  * 2 - 1;
-        this.mouse.y = -((e.clientY - rect.top)   / rect.height) * 2 + 1;
+        this.mouse.x =  ((e.clientX - rect.left) / rect.width)  * 2 - 1;
+        this.mouse.y = -((e.clientY - rect.top)  / rect.height) * 2 + 1;
         this.raycaster.setFromCamera(this.mouse, this.camera);
         const hits = this.raycaster.intersectObjects(this.pinMeshes);
         canvas.style.cursor = hits.length > 0 ? 'pointer' : 'grab';
       });
 
-      /* Resize */
       window.addEventListener('resize', () => this._resize());
     }
 
-    _handleClick(e) {
+    _castAndOpen(e) {
       const rect = this.renderer.domElement.getBoundingClientRect();
       this.mouse.x =  ((e.clientX - rect.left) / rect.width)  * 2 - 1;
       this.mouse.y = -((e.clientY - rect.top)  / rect.height) * 2 + 1;
-      this._castAndShow();
+      this.raycaster.setFromCamera(this.mouse, this.camera);
+      const hits = this.raycaster.intersectObjects(this.pinMeshes);
+      if (hits.length > 0) this.openPanel(hits[0].object.userData);
     }
 
-    _handleClickTouch(t) {
+    _castAndOpenTouch(t) {
       const rect = this.renderer.domElement.getBoundingClientRect();
       this.mouse.x =  ((t.clientX - rect.left) / rect.width)  * 2 - 1;
       this.mouse.y = -((t.clientY - rect.top)  / rect.height) * 2 + 1;
-      this._castAndShow();
-    }
-
-    _castAndShow() {
       this.raycaster.setFromCamera(this.mouse, this.camera);
       const hits = this.raycaster.intersectObjects(this.pinMeshes);
-      if (hits.length > 0) {
-        this._showCard(hits[0].object.userData);
-      }
+      if (hits.length > 0) this.openPanel(hits[0].object.userData);
     }
 
-    /* ── LOCATION CARD ───────────────────────────────────── */
-    _showCard(loc) {
-      // Scroll to the matching world card and highlight it
-      const card = document.querySelector(`.loc-card[data-loc="${loc.id}"]`);
-      if (card) {
-        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        card.classList.add('loc-card--active');
-        setTimeout(() => card.classList.remove('loc-card--active'), 2500);
-      }
+    /* ── PANEL ──────────────────────────────────────────────── */
+    openPanel(loc) {
+      this.activePin = loc;
+      const stage    = document.getElementById('globe-stage');
+      const panel    = document.getElementById('loc-panel');
+      const content  = document.getElementById('loc-panel-content');
+      if (!stage || !panel || !content) return;
 
-      // Also show a floating tooltip near the globe
-      this._showTooltip(loc);
-    }
-
-    _showTooltip(loc) {
-      let tip = document.getElementById('globe-tooltip');
-      if (!tip) {
-        tip = document.createElement('div');
-        tip.id = 'globe-tooltip';
-        tip.className = 'globe-tooltip';
-        document.body.appendChild(tip);
-      }
-
-      tip.innerHTML = `
-        <span class="tip-type" style="color:${loc.color}">${loc.type}</span>
-        <strong class="tip-name">${loc.name}</strong>
-        <em class="tip-tagline">${loc.tagline}</em>
-        <div class="tip-skills">
+      content.innerHTML = `
+        <span class="loc-type-badge" style="background:${loc.color}22;color:${loc.color};border:1px solid ${loc.color}44">
+          ${loc.flag} ${loc.type}
+        </span>
+        <h3 class="loc-panel-title">${loc.fullName}</h3>
+        <p class="loc-panel-tagline">${loc.tagline}</p>
+        <p class="loc-panel-desc">${loc.desc}</p>
+        <div class="loc-panel-skills">
           ${loc.skills.map(s => `<span>${s}</span>`).join('')}
         </div>
       `;
 
-      // Position near the globe container
-      const rect  = this.container.getBoundingClientRect();
-      const tipX  = rect.left + rect.width * 0.5;
-      const tipY  = rect.top  + rect.height * 0.72;
+      stage.classList.add('panel-open');
+      panel.setAttribute('aria-hidden', 'false');
 
-      tip.style.cssText = `
-        position: fixed;
-        left: ${tipX}px;
-        top: ${tipY}px;
-        transform: translate(-50%, 0);
-        z-index: 999;
-        opacity: 0;
-        transition: opacity 0.3s;
-        pointer-events: none;
-      `;
-
-      requestAnimationFrame(() => { tip.style.opacity = '1'; });
-
-      clearTimeout(this._tipTimer);
-      this._tipTimer = setTimeout(() => {
-        tip.style.opacity = '0';
-        setTimeout(() => { if (tip.parentNode) tip.parentNode.removeChild(tip); }, 350);
-      }, 3200);
+      // Slowly rotate globe to face the selected pin
+      this._rotateToPinSmooth(loc);
     }
 
-    /* ── ANIMATE ─────────────────────────────────────────── */
+    closePanel() {
+      const stage = document.getElementById('globe-stage');
+      const panel = document.getElementById('loc-panel');
+      if (stage) stage.classList.remove('panel-open');
+      if (panel) panel.setAttribute('aria-hidden', 'true');
+      this.activePin = null;
+    }
+
+    _rotateToPinSmooth(loc) {
+      // Calculate target rotation so pin faces camera
+      const targetRotY = -(loc.lon + 180) * (Math.PI / 180) + Math.PI;
+      const targetRotX = -loc.lat * (Math.PI / 180) * 0.6;
+
+      const startY  = this.rotY;
+      const startX  = this.rotX;
+      const startT  = performance.now();
+      const dur     = 900;
+      const ease    = (t) => 1 - Math.pow(1 - t, 3);
+
+      const animate = (now) => {
+        const p = Math.min((now - startT) / dur, 1);
+        const e = ease(p);
+        this.rotY = startY + (targetRotY - startY) * e;
+        this.rotX = startX + (targetRotX - startX) * e;
+        this.globeGroup.rotation.y = this.rotY;
+        this.globeGroup.rotation.x = this.rotX;
+        if (p < 1) requestAnimationFrame(animate);
+      };
+      requestAnimationFrame(animate);
+    }
+
+    /* ── PIN LABEL PROJECTION ───────────────────────────────── */
+    _updateLabels() {
+      if (!this.labelsWrap || !this.pinMeshes.length) return;
+
+      const cw = this.container.offsetWidth;
+      const ch = this.container.offsetHeight;
+
+      LOCATIONS.forEach((loc, i) => {
+        const mesh    = this.pinMeshes[i];
+        const label   = this.pinLabels[i];
+        if (!mesh || !label) return;
+
+        // World position of pin
+        const worldPos = mesh.position.clone().applyMatrix4(this.globeGroup.matrixWorld);
+
+        // Check if facing camera (dot product with camera direction)
+        const toCam    = this.camera.position.clone().sub(worldPos).normalize();
+        const normal   = worldPos.clone().normalize();
+        const facing   = normal.dot(toCam) > 0.18; // 0.18 = slight buffer so labels don't appear on edge
+
+        // Project to screen
+        const projected = worldPos.clone().project(this.camera);
+        const x = (projected.x * 0.5 + 0.5) * cw;
+        const y = (1 - (projected.y * 0.5 + 0.5)) * ch;
+
+        label.style.left    = x + 'px';
+        label.style.top     = (y + 16) + 'px'; // offset below pin
+        label.style.opacity = facing ? '1' : '0';
+        label.style.pointerEvents = facing ? 'auto' : 'none';
+        label.style.zIndex  = facing ? '10' : '-1';
+      });
+    }
+
+    /* ── ANIMATE ─────────────────────────────────────────────── */
     animate() {
       requestAnimationFrame(() => this.animate());
 
       const t = this.clock.getElapsedTime();
 
-      /* Auto-rotate */
       if (this.autoRotate && !this.isDragging) {
-        this.rotY += 0.0018;
+        this.rotY += 0.0016;
         this.globeGroup.rotation.y = this.rotY;
       } else if (!this.isDragging) {
-        /* Momentum decay */
-        this.velX *= 0.92;
-        this.velY *= 0.92;
+        this.velX *= 0.91;
+        this.velY *= 0.91;
         this.rotX  = Math.max(-0.55, Math.min(0.55, this.rotX + this.velX));
         this.rotY += this.velY;
         this.globeGroup.rotation.y = this.rotY;
         this.globeGroup.rotation.x = this.rotX;
       }
 
-      /* Pulse rings */
-      this.pulseRings.forEach((ring, i) => {
-        const phase = ring.userData.phase;
-        const s     = 1 + 0.45 * Math.sin(t * 1.8 + phase);
+      // Pulse rings
+      this.pulseRings.forEach((ring) => {
+        const ph = ring.userData.phase;
+        const s  = 1 + 0.5 * Math.sin(t * 1.6 + ph);
         ring.scale.setScalar(s);
-        ring.material.opacity = 0.22 + 0.28 * Math.sin(t * 1.8 + phase);
+        ring.material.opacity = 0.2 + 0.3 * Math.sin(t * 1.6 + ph);
       });
 
+      this._updateLabels();
       this.renderer.render(this.scene, this.camera);
     }
 
-    /* ── RESIZE ──────────────────────────────────────────── */
     _resize() {
       const w = this.container.offsetWidth;
       const h = this.container.offsetHeight;
@@ -433,80 +480,99 @@
     }
   }
 
-  /* ── INIT ───────────────────────────────────────────────── */
-  function initGlobe() {
+  /* ── MODAL CONTROLLER ───────────────────────────────────── */
+  let globeInstance = null;
+
+  function openGlobeModal() {
+    const modal = document.getElementById('globe-modal');
+    if (!modal) return;
+
+    modal.removeAttribute('aria-hidden');
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+
+    // Lazy-init globe on first open
+    if (!globeInstance) {
+      // Small delay so the container has its final size
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          globeInstance = new EarthGlobe();
+          window._globe = globeInstance;
+        });
+      });
+    } else {
+      globeInstance._resize();
+    }
+  }
+
+  function closeGlobeModal() {
+    const modal = document.getElementById('globe-modal');
+    if (!modal) return;
+    modal.setAttribute('aria-hidden', 'true');
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    if (globeInstance) globeInstance.closePanel();
+  }
+
+  /* ── BIND OPEN / CLOSE TRIGGERS ────────────────────────── */
+  function bindModalTriggers() {
+    // All open triggers
+    const openIds = ['globe-open-card', 'globe-open-hero', 'globe-open-nav', 'globe-open-mob'];
+    openIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('click', openGlobeModal);
+        el.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') openGlobeModal(); });
+      }
+    });
+
+    // Close button
+    const closeBtn = document.getElementById('globe-close');
+    if (closeBtn) closeBtn.addEventListener('click', closeGlobeModal);
+
+    // Close info panel
+    const panelClose = document.getElementById('loc-panel-close');
+    if (panelClose) panelClose.addEventListener('click', () => {
+      if (globeInstance) globeInstance.closePanel();
+    });
+
+    // Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (globeInstance && globeInstance.activePin) {
+          globeInstance.closePanel();
+        } else {
+          closeGlobeModal();
+        }
+      }
+    });
+
+    // Click outside globe/panel to close panel
+    const stage = document.getElementById('globe-stage');
+    if (stage) {
+      stage.addEventListener('click', (e) => {
+        const wrap  = document.getElementById('globe-three-wrap');
+        const panel = document.getElementById('loc-panel');
+        if (wrap && !wrap.contains(e.target) && panel && !panel.contains(e.target)) {
+          if (globeInstance) globeInstance.closePanel();
+        }
+      });
+    }
+  }
+
+  /* ── BOOT ───────────────────────────────────────────────── */
+  function boot() {
     if (typeof THREE === 'undefined') {
       console.warn('Globe: Three.js not loaded');
       return;
     }
-    if (!document.getElementById('hero-globe-wrap')) return;
-
-    window._globe = new Globe('hero-globe-wrap');
+    bindModalTriggers();
   }
 
-  /* Boot after DOM ready */
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initGlobe);
+    document.addEventListener('DOMContentLoaded', boot);
   } else {
-    initGlobe();
+    boot();
   }
-
-  /* Inject tooltip CSS */
-  const tooltipStyle = document.createElement('style');
-  tooltipStyle.textContent = `
-    .globe-tooltip {
-      background: rgba(9,13,38,0.88);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 16px;
-      padding: 14px 18px;
-      min-width: 220px;
-      max-width: 280px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
-    }
-    .tip-type {
-      display: block;
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 5px;
-    }
-    .tip-name {
-      display: block;
-      font-family: 'Syne', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: rgba(230,238,255,0.95);
-      margin-bottom: 2px;
-    }
-    .tip-tagline {
-      display: block;
-      font-size: 0.78rem;
-      color: rgba(180,200,240,0.55);
-      font-style: italic;
-      margin-bottom: 10px;
-    }
-    .tip-skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-    }
-    .tip-skills span {
-      font-size: 0.68rem;
-      color: rgba(180,200,240,0.65);
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.09);
-      padding: 3px 9px;
-      border-radius: 99px;
-    }
-    .loc-card--active {
-      border-color: rgba(75,159,255,0.5) !important;
-      box-shadow: 0 0 0 1px rgba(75,159,255,0.2), 0 12px 40px rgba(0,0,0,0.4) !important;
-      transform: translateY(-4px) !important;
-    }
-  `;
-  document.head.appendChild(tooltipStyle);
 
 })();
