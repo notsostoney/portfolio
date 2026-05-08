@@ -3,175 +3,754 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Antoine Pornin – Portfolio Marketing, Communication & Commerce International</title>
-  <meta name="description" content="Portfolio d'Antoine Pornin, étudiant en BUT Techniques de Commercialisation option Commerce International." />
+  <title>Antoine Pornin — Commerce International & Communication Digitale</title>
+  <meta name="description" content="Portfolio d'Antoine Pornin — Commerce International, Communication Digitale, Business Development entre France et Chine." />
   <meta name="author" content="Antoine Pornin" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
-<body data-page="home">
+<body>
 
-  <nav id="navbar">
-    <div class="nav-container">
-      <a href="index.html" class="nav-logo">AP</a>
-      <button class="nav-toggle" id="navToggle" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html" data-i18n="nav.home" data-nav="home">Accueil</a></li>
-        <li><a href="experiences.html" data-i18n="nav.experiences" data-nav="experiences">Expériences</a></li>
-        <li><a href="realisations.html" data-i18n="nav.realisations" data-nav="realisations">Réalisations</a></li>
-        <li><a href="parcours.html" data-i18n="nav.parcours" data-nav="parcours">Parcours</a></li>
-        <li><a href="competences.html" data-i18n="nav.competences" data-nav="competences">Compétences</a></li>
-        <li><a href="projet-pro.html" data-i18n="nav.projet" data-nav="projet-pro">Projet pro</a></li>
-      </ul>
-      <div class="nav-right">
+  <!-- ░░ BACKGROUND SPATIAL LAYERS ░░ -->
+  <div class="bg-spatial" aria-hidden="true">
+    <div class="bg-glow bg-glow--blue"></div>
+    <div class="bg-glow bg-glow--purple"></div>
+    <div class="bg-glow bg-glow--teal"></div>
+    <div class="bg-mountains">
+      <div class="mtn mtn--far"></div>
+      <div class="mtn mtn--mid"></div>
+      <div class="mtn mtn--near"></div>
+    </div>
+    <canvas id="stars-canvas"></canvas>
+  </div>
+
+  <!-- ░░ CURSOR ░░ -->
+  <div id="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- ░░ SCROLL PROGRESS ░░ -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ░░ NAVIGATION DESKTOP ░░ -->
+  <nav id="nav-pill" role="navigation" aria-label="Navigation principale">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo" aria-label="Accueil">AP</a>
+      <div class="nav-links" role="list">
+        <a href="#hero"        class="nav-link active" data-section="hero"        role="listitem">Accueil</a>
+        <a href="#world"       class="nav-link"         data-section="world"       role="listitem">Mon Monde</a>
+        <a href="#experiences" class="nav-link"         data-section="experiences" role="listitem">Expériences</a>
+        <a href="#projects"    class="nav-link"         data-section="projects"    role="listitem">Projets</a>
+        <a href="#skills"      class="nav-link"         data-section="skills"      role="listitem">Compétences</a>
+        <a href="#contact"     class="nav-link"         data-section="contact"     role="listitem">Contact</a>
+      </div>
+      <div class="nav-actions">
         <div class="lang-switcher">
-          <button class="lang-switch-btn active" data-lang="fr">FR</button>
-          <button class="lang-switch-btn" data-lang="en">EN</button>
-          <button class="lang-switch-btn" data-lang="de">DE</button>
-          <button class="lang-switch-btn" data-lang="zh">中文</button>
+          <button class="lang-btn active" data-lang="fr">FR</button>
+          <button class="lang-btn" data-lang="en">EN</button>
         </div>
-        <a href="cv.html" class="btn btn-outline-sm" data-i18n="nav.cv">Télécharger CV</a>
-        <a href="contact.html" class="btn btn-primary-sm" data-i18n="nav.contact">Me contacter</a>
+        <a href="mailto:antoine.pornin.fr@gmail.com" class="btn-nav-cta">Me contacter</a>
       </div>
     </div>
   </nav>
 
-  <section id="hero">
-    <div class="hero-bg"><div class="hero-overlay"></div></div>
+  <!-- ░░ NAVIGATION MOBILE ░░ -->
+  <nav id="nav-mobile" role="navigation" aria-label="Navigation mobile">
+    <a href="#hero" class="mob-link active" data-section="hero">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10L10 3L17 10V17H13V13H7V17H3V10Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      <span>Accueil</span>
+    </a>
+    <a href="#world" class="mob-link" data-section="world">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M10 3C10 3 7 6.5 7 10C7 13.5 10 17 10 17" stroke="currentColor" stroke-width="1.5"/><path d="M10 3C10 3 13 6.5 13 10C13 13.5 10 17 10 17" stroke="currentColor" stroke-width="1.5"/><path d="M3 10H17" stroke="currentColor" stroke-width="1.5"/></svg>
+      <span>Monde</span>
+    </a>
+    <a href="#experiences" class="mob-link" data-section="experiences">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="6" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 6V5C7 3.9 7.9 3 9 3H11C12.1 3 13 3.9 13 5V6" stroke="currentColor" stroke-width="1.5"/></svg>
+      <span>Expé.</span>
+    </a>
+    <a href="#projects" class="mob-link" data-section="projects">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="3" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="3" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="11" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="11" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
+      <span>Projets</span>
+    </a>
+    <a href="#contact" class="mob-link" data-section="contact">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 5H17V15H3V5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M3 5L10 11L17 5" stroke="currentColor" stroke-width="1.5"/></svg>
+      <span>Contact</span>
+    </a>
+  </nav>
 
+  <!-- ════════════════════════════════════
+       SECTION 1 — HERO
+  ════════════════════════════════════ -->
+  <section id="hero" data-section="hero">
     <div class="hero-content">
-      <div class="hero-eyebrow">
-        <span class="hero-avail" data-i18n="hero.tag">Portfolio professionnel · 2026</span>
-        <span class="hero-loc">Tours, France</span>
+      <div class="hero-badge">
+        <span class="badge-pulse"></span>
+        <span>Disponible · Commerce International</span>
       </div>
 
       <h1 class="hero-name">
-        <span class="hero-n1">Antoine</span>
-        <span class="hero-n2">Pornin</span>
+        <span class="name-line name-first">Antoine</span>
+        <span class="name-line name-last">Pornin</span>
       </h1>
 
-      <div class="hero-rule"></div>
-      <p class="hero-sub" data-i18n="hero.subtitle">Business Development &amp; International Business</p>
+      <p class="hero-role">
+        Business Development
+        <span class="role-dot">·</span>
+        Communication Digitale
+        <span class="role-dot">·</span>
+        International
+      </p>
 
-      <p class="hero-desc" data-i18n="hero.desc">Curieux, orienté résultats, j'ai développé des compétences concrètes en commerce international et développement commercial — notamment à travers un stage de 16 semaines en Chine.</p>
+      <p class="hero-desc">
+        Je construis des ponts entre la France et la Chine — à travers le commerce, la communication et l'adaptation culturelle. Actuellement en stage à Jinhua, Chine.
+      </p>
 
-      <div class="hero-btns">
-        <a href="experiences.html" class="btn btn-primary" data-i18n="hero.btn1">Découvrir mon portfolio</a>
-        <a href="cv.html" class="btn btn-outline" data-i18n="hero.btn2">Télécharger mon CV</a>
+      <div class="hero-cta">
+        <a href="#world" class="btn-spatial btn-primary">
+          Explorer mon parcours
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7H12M8 3L12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#contact" class="btn-spatial btn-glass">Me contacter</a>
       </div>
-    </div>
 
-    <!-- Stats animées -->
-    <div class="hero-stats-bar">
-      <div class="hero-stat">
-        <span class="stat-num" data-count="5">5</span>
-        <span class="stat-lbl">Expériences pro</span>
-      </div>
-      <div class="hero-stat-sep"></div>
-      <div class="hero-stat">
-        <span class="stat-num" data-count="16">16</span>
-        <span class="stat-lbl">Semaines en Chine</span>
-      </div>
-      <div class="hero-stat-sep"></div>
-      <div class="hero-stat">
-        <span class="stat-num" data-count="885">885</span>
-        <span class="stat-lbl">Score TOEIC</span>
-      </div>
-      <div class="hero-stat-sep"></div>
-      <div class="hero-stat">
-        <span class="stat-num" data-count="3">3</span>
-        <span class="stat-lbl">Langues étrangères</span>
-      </div>
-    </div>
-
-    <!-- Marquee doré -->
-    <div class="hero-marquee" aria-hidden="true">
-      <div class="marquee-track"></div>
-    </div>
-
-    <div class="hero-about" id="about">
-      <div class="container">
-        <div class="section-header" data-aos="fade-up">
-          <span class="section-tag" data-i18n="about.tag">Qui suis-je ?</span>
-          <h2 data-i18n="about.title">À propos de moi</h2>
+      <div class="hero-stats">
+        <div class="h-stat">
+          <span class="h-stat-n" data-count="5">5</span>
+          <span class="h-stat-l">Expériences</span>
         </div>
-        <div class="about-grid">
-          <div class="about-text" data-aos="fade-right">
-            <p class="lead" data-i18n="about.lead">Profil orienté commerce international et développement commercial, avec des expériences concrètes en entreprise — dont un stage de 4 mois en Chine.</p>
-            <p data-i18n="about.p1">Passionné par les voyages, les langues étrangères et les environnements multiculturels, j'évolue avec aisance dans des contextes internationaux.</p>
-            <p data-i18n="about.p2">Le football, la course et mon engagement associatif m'ont forgé un esprit d'équipe, une rigueur et une capacité à gérer la pression.</p>
-            <div class="about-values">
-              <span class="value-tag" data-i18n="about.v1">Curiosité</span>
-              <span class="value-tag" data-i18n="about.v2">Esprit d'équipe</span>
-              <span class="value-tag" data-i18n="about.v3">Organisation</span>
-              <span class="value-tag" data-i18n="about.v4">International</span>
-              <span class="value-tag" data-i18n="about.v5">Créativité</span>
-              <span class="value-tag" data-i18n="about.v6">Sens commercial</span>
+        <div class="h-stat-sep"></div>
+        <div class="h-stat">
+          <span class="h-stat-n" data-count="16">16</span>
+          <span class="h-stat-l">Semaines Chine</span>
+        </div>
+        <div class="h-stat-sep"></div>
+        <div class="h-stat">
+          <span class="h-stat-n" data-count="885">885</span>
+          <span class="h-stat-l">TOEIC</span>
+        </div>
+        <div class="h-stat-sep"></div>
+        <div class="h-stat">
+          <span class="h-stat-n" data-count="3">3</span>
+          <span class="h-stat-l">Langues</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Globe Three.js -->
+    <div class="hero-globe-wrap" id="hero-globe-wrap">
+      <div class="globe-hint">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 6h9M6 1.5C6 1.5 4 3.5 4 6S6 10.5 6 10.5 8 8.5 8 6 6 1.5 6 1.5z" stroke="currentColor" stroke-width="1.2"/></svg>
+        Faites tourner · Cliquez sur les points
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <div class="scroll-line"></div>
+      <span>Défiler</span>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       SECTION 2 — MON MONDE (GLOBE)
+  ════════════════════════════════════ -->
+  <section id="world" data-section="world">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="section-tag">Parcours international</span>
+        <h2>Une identité construite<br><em>à travers le monde</em></h2>
+        <p class="section-sub">Quatre lieux. Quatre chapitres. Cliquez sur un marqueur pour découvrir.</p>
+      </div>
+
+      <div class="world-stage">
+        <!-- Location cards grid -->
+        <div class="loc-grid" data-reveal>
+
+          <div class="glass-panel loc-card" data-loc="jinhua">
+            <div class="loc-card-top">
+              <span class="loc-type loc-type--stage">Stage international</span>
+              <span class="loc-flag">🇨🇳</span>
+            </div>
+            <h3 class="loc-title">Jinhua, Chine</h3>
+            <p class="loc-tagline">Digital communication in China</p>
+            <p class="loc-desc">Stage de 16 semaines en communication digitale internationale — création de vidéos courtes, adaptation interculturelle des argumentaires commerciaux, analyse TikTok / social commerce pour l'export.</p>
+            <p class="loc-problem"><em>« Dans quelle mesure l'adaptation culturelle des supports commerciaux peut-elle renforcer la crédibilité d'une entreprise chinoise à l'international ? »</em></p>
+            <div class="loc-skills">
+              <span>Social commerce</span><span>Adaptation interculturelle</span><span>Création contenu</span><span>Anglais pro</span>
             </div>
           </div>
-          <div class="about-visual" data-aos="fade-left">
-            <div class="about-photo-grid">
-              <div class="photo-card photo-main">
-                <div class="photo-placeholder photo-mountain">
-                  <span>🏔</span>
-                  <p>Montagne &amp; Nature</p>
-                </div>
-              </div>
-              <div class="photo-card">
-                <div class="photo-placeholder photo-sport">
-                  <span>⚽</span>
-                  <p>Football &amp; Sport</p>
-                </div>
-              </div>
-              <div class="photo-card">
-                <div class="photo-placeholder photo-travel">
-                  <span>✈</span>
-                  <p>Voyages</p>
-                </div>
-              </div>
-              <div class="photo-card photo-wide">
-                <div class="photo-placeholder photo-china">
-                  <span>🌏</span>
-                  <p>Stage en Chine</p>
-                </div>
-              </div>
+
+          <div class="glass-panel loc-card" data-loc="yiwu">
+            <div class="loc-card-top">
+              <span class="loc-type loc-type--project">Projet entrepreneurial</span>
+              <span class="loc-flag">🇨🇳</span>
+            </div>
+            <h3 class="loc-title">Yiwu, Chine</h3>
+            <p class="loc-tagline">Sourcing & business bridge</p>
+            <p class="loc-desc">Projet d'intermédiation commerciale entre la France et Yiwu — capitale mondiale du sourcing. Présélection et qualification de fournisseurs, comparaison d'offres, réduction de l'incertitude pour les entreprises françaises souhaitant travailler avec la Chine.</p>
+            <div class="loc-skills">
+              <span>Sourcing</span><span>Négociation</span><span>Commerce France-Chine</span><span>Veille marché</span>
             </div>
           </div>
+
+          <div class="glass-panel loc-card" data-loc="issoudun">
+            <div class="loc-card-top">
+              <span class="loc-type loc-type--formation">Formation</span>
+              <span class="loc-flag">🇫🇷</span>
+            </div>
+            <h3 class="loc-title">Issoudun, France</h3>
+            <p class="loc-tagline">Commercial foundation</p>
+            <p class="loc-desc">BUT Techniques de Commercialisation, spécialisation Commerce International — dans un territoire marqué par des acteurs industriels majeurs (Safran, Louis Vuitton). Marketing, vente, négociation, analyse de marché, gestion de projet.</p>
+            <div class="loc-skills">
+              <span>Marketing</span><span>Vente</span><span>Négociation</span><span>Gestion de projet</span>
+            </div>
+          </div>
+
+          <div class="glass-panel loc-card" data-loc="stgeorgen">
+            <div class="loc-card-top">
+              <span class="loc-type loc-type--sport">Expérience internationale</span>
+              <span class="loc-flag">🇩🇪</span>
+            </div>
+            <h3 class="loc-title">Sankt Georgen, Allemagne</h3>
+            <p class="loc-tagline">Football abroad</p>
+            <p class="loc-desc">Expérience de vie à l'étranger au Gymnasium de Sankt Georgen, dans le cadre du football. Changer de pays pour poursuivre une opportunité : adaptation rapide, discipline, autonomie et intégration dans un nouvel environnement culturel.</p>
+            <div class="loc-skills">
+              <span>Adaptabilité</span><span>Autonomie</span><span>Allemand</span><span>Résilience</span>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
   </section>
 
-  <footer>
+  <!-- ════════════════════════════════════
+       SECTION 3 — EXPÉRIENCES
+  ════════════════════════════════════ -->
+  <section id="experiences" data-section="experiences">
     <div class="container">
-      <div class="footer-content">
-        <div class="footer-brand">
-          <span class="footer-logo">AP</span>
-          <p>Antoine Pornin<br><small data-i18n="footer.subtitle">Commerce International & Business Development</small></p>
+      <div class="section-header" data-reveal>
+        <span class="section-tag">Terrain & Résultats</span>
+        <h2>Expériences professionnelles</h2>
+        <p class="section-sub">5 expériences en entreprise, en France et à l'international.</p>
+      </div>
+
+      <!-- Featured card -->
+      <div class="glass-panel exp-card exp-featured" data-reveal>
+        <div class="exp-badge-featured">Expérience phare</div>
+        <div class="exp-header">
+          <div class="exp-icon-wrap">🌏</div>
+          <div class="exp-meta">
+            <span class="exp-domain">Commercial International</span>
+            <h3>Stagiaire commercial international</h3>
+            <p class="exp-company">Golden Sun Health Technology Group</p>
+            <span class="exp-location">📍 Jinhua, Chine &nbsp;·&nbsp; Fév – Juil 2026 &nbsp;·&nbsp; 16 semaines</span>
+          </div>
         </div>
-        <div class="footer-links">
-          <a href="index.html" data-i18n="nav.home">Accueil</a>
-          <a href="experiences.html" data-i18n="nav.experiences">Expériences</a>
-          <a href="realisations.html" data-i18n="nav.realisations">Réalisations</a>
-          <a href="contact.html" data-i18n="nav.contact">Contact</a>
-        </div>
-        <div class="footer-contact">
-          <a href="mailto:antoine.pornin.fr@gmail.com">antoine.pornin.fr@gmail.com</a>
-          <a href="tel:0683422198">06 83 42 21 98</a>
-          <a href="cv.html" class="btn-footer-cv" data-i18n="nav.cv">Télécharger le CV</a>
+        <ul class="exp-missions">
+          <li>Développement des ventes à l'international auprès de clients étrangers, en anglais</li>
+          <li>Création de vidéos courtes commerciales pour valoriser les produits sur les marchés étrangers</li>
+          <li>Adaptation des argumentaires de vente selon les marchés, cultures et attentes clients</li>
+          <li>Analyse de marchés TikTok, social commerce et tendances digitales internationales</li>
+          <li>Échanges commerciaux avec prospects et partenaires internationaux</li>
+          <li>Suivi relation client et contribution au développement commercial international</li>
+        </ul>
+        <div class="exp-chips">
+          <span>Commerce international</span>
+          <span>Business development</span>
+          <span>Social commerce</span>
+          <span>Adaptation interculturelle</span>
+          <span>Anglais professionnel</span>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>© 2026 Antoine Pornin · Tours, France</p>
+
+      <!-- Secondary cards row -->
+      <div class="exp-row">
+
+        <div class="glass-panel exp-card" data-reveal>
+          <div class="exp-header">
+            <div class="exp-icon-wrap">📞</div>
+            <div class="exp-meta">
+              <span class="exp-domain">Commercial B2B</span>
+              <h3>Stagiaire commercial</h3>
+              <p class="exp-company">Dyadem</p>
+              <span class="exp-location">📍 Tours &nbsp;·&nbsp; Avr – Mai 2025 &nbsp;·&nbsp; 2 mois</span>
+            </div>
+          </div>
+          <ul class="exp-missions">
+            <li>Campagne de relance clients : 200+ appels pour le lancement du catalogue agenda 2026</li>
+            <li>Optimisation CRM : 250 fiches clients et produits actualisées</li>
+            <li>Structuration de réponses à des appels d'offres : 3 dossiers standardisés</li>
+          </ul>
+          <div class="exp-result">
+            <span class="result-ico">📈</span>
+            Contribution directe à la mise en marché du catalogue 2026
+          </div>
+          <div class="exp-chips">
+            <span>Prospection B2B</span><span>CRM</span><span>Appels d'offres</span>
+          </div>
+        </div>
+
+        <div class="glass-panel exp-card" data-reveal>
+          <div class="exp-header">
+            <div class="exp-icon-wrap">🥃</div>
+            <div class="exp-meta">
+              <span class="exp-domain">Animation commerciale</span>
+              <h3>Animateur commercial</h3>
+              <p class="exp-company">Distillerie Combier</p>
+              <span class="exp-location">📍 Vierzon &nbsp;·&nbsp; Octobre 2025</span>
+            </div>
+          </div>
+          <ul class="exp-missions">
+            <li>Animation en rayon spiritueux – gamme La Folie de Combier</li>
+            <li>Argumentation produit, dégustation et gestion des objections</li>
+          </ul>
+          <div class="exp-result">
+            <span class="result-ico">🏆</span>
+            52 bouteilles vendues · Objectif initial : 30
+          </div>
+          <div class="exp-chips">
+            <span>Vente terrain</span><span>Argumentation</span>
+          </div>
+        </div>
+
+        <div class="glass-panel exp-card" data-reveal>
+          <div class="exp-header">
+            <div class="exp-icon-wrap">📢</div>
+            <div class="exp-meta">
+              <span class="exp-domain">Communication</span>
+              <h3>Stagiaire communication</h3>
+              <p class="exp-company">Clen</p>
+              <span class="exp-location">📍 Chinon &nbsp;·&nbsp; 2024 &nbsp;·&nbsp; 1 mois</span>
+            </div>
+          </div>
+          <ul class="exp-missions">
+            <li>Création de contenus réseaux sociaux et supports visuels</li>
+            <li>Participation à la refonte de l'intranet : intégration contenu et tests</li>
+          </ul>
+          <div class="exp-chips">
+            <span>Canva</span><span>Réseaux sociaux</span><span>Intranet</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       SECTION 4 — PROJETS / RÉALISATIONS
+  ════════════════════════════════════ -->
+  <section id="projects" data-section="projects">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="section-tag">Livrables concrets</span>
+        <h2>Réalisations</h2>
+        <p class="section-sub">Travaux réalisés en entreprise et en formation.</p>
+      </div>
+
+      <div class="filter-bar" data-reveal>
+        <button class="filter-btn active" data-filter="all">Tout</button>
+        <button class="filter-btn" data-filter="marketing">Marketing</button>
+        <button class="filter-btn" data-filter="commercial">Commercial</button>
+        <button class="filter-btn" data-filter="communication">Communication</button>
+        <button class="filter-btn" data-filter="analyse">Analyse</button>
+      </div>
+
+      <div class="proj-grid" id="proj-grid">
+
+        <div class="glass-panel proj-card" data-category="analyse" data-reveal>
+          <div class="proj-thumb">
+            <img src="images/slide_08.jpg" alt="Benchmark concurrentiel" loading="lazy" />
+            <div class="proj-overlay"><span>Voir le projet</span></div>
+          </div>
+          <div class="proj-body">
+            <span class="proj-cat">Analyse</span>
+            <h4>Benchmark concurrentiel</h4>
+            <p>Analyse comparative de positionnements concurrents.</p>
+          </div>
+        </div>
+
+        <div class="glass-panel proj-card" data-category="analyse" data-reveal>
+          <div class="proj-thumb">
+            <img src="images/slide_09.jpg" alt="Dashboard commercial" loading="lazy" />
+            <div class="proj-overlay"><span>Voir le projet</span></div>
+          </div>
+          <div class="proj-body">
+            <span class="proj-cat">Analyse</span>
+            <h4>Dashboard commercial</h4>
+            <p>Tableau de bord de suivi des indicateurs commerciaux.</p>
+          </div>
+        </div>
+
+        <div class="glass-panel proj-card" data-category="marketing" data-reveal>
+          <div class="proj-thumb">
+            <img src="images/slide_10.jpg" alt="Stratégie chocolat" loading="lazy" />
+            <div class="proj-overlay"><span>Voir le projet</span></div>
+          </div>
+          <div class="proj-body">
+            <span class="proj-cat">Marketing</span>
+            <h4>Stratégie chocolat premium</h4>
+            <p>Étude de marché et recommandations stratégiques.</p>
+          </div>
+        </div>
+
+        <div class="glass-panel proj-card" data-category="marketing" data-reveal>
+          <div class="proj-thumb">
+            <img src="images/slide_11.jpg" alt="Analyse Kapferer" loading="lazy" />
+            <div class="proj-overlay"><span>Voir le projet</span></div>
+          </div>
+          <div class="proj-body">
+            <span class="proj-cat">Marketing</span>
+            <h4>Prisme de Kapferer</h4>
+            <p>Analyse d'identité de marque via le prisme Kapferer.</p>
+          </div>
+        </div>
+
+        <div class="glass-panel proj-card" data-category="analyse" data-reveal>
+          <div class="proj-thumb">
+            <img src="images/slide_12.jpg" alt="Analyse PESTEL" loading="lazy" />
+            <div class="proj-overlay"><span>Voir le projet</span></div>
+          </div>
+          <div class="proj-body">
+            <span class="proj-cat">Analyse</span>
+            <h4>Analyse PESTEL</h4>
+            <p>Analyse macro-environnementale de marché international.</p>
+          </div>
+        </div>
+
+        <div class="glass-panel proj-card" data-category="commercial" data-reveal>
+          <div class="proj-thumb">
+            <img src="images/slide_15.jpg" alt="Devis commercial" loading="lazy" />
+            <div class="proj-overlay"><span>Voir le projet</span></div>
+          </div>
+          <div class="proj-body">
+            <span class="proj-cat">Commercial</span>
+            <h4>Devis commercial</h4>
+            <p>Rédaction et structuration d'un devis professionnel.</p>
+          </div>
+        </div>
+
+        <div class="glass-panel proj-card" data-category="communication" data-reveal>
+          <div class="proj-thumb">
+            <img src="images/slide_16.jpg" alt="Plaquette commerciale" loading="lazy" />
+            <div class="proj-overlay"><span>Voir le projet</span></div>
+          </div>
+          <div class="proj-body">
+            <span class="proj-cat">Communication</span>
+            <h4>Plaquette commerciale</h4>
+            <p>Conception graphique d'une plaquette de présentation.</p>
+          </div>
+        </div>
+
+        <div class="glass-panel proj-card" data-category="commercial" data-reveal>
+          <div class="proj-thumb">
+            <img src="images/slide_17.jpg" alt="Argumentaire CROC" loading="lazy" />
+            <div class="proj-overlay"><span>Voir le projet</span></div>
+          </div>
+          <div class="proj-body">
+            <span class="proj-cat">Commercial</span>
+            <h4>Argumentaire CROC</h4>
+            <p>Structuration d'un argumentaire de vente téléphonique.</p>
+          </div>
+        </div>
+
+        <div class="glass-panel proj-card" data-category="communication" data-reveal>
+          <div class="proj-thumb">
+            <img src="images/slide_18.jpg" alt="Cartes de visite" loading="lazy" />
+            <div class="proj-overlay"><span>Voir le projet</span></div>
+          </div>
+          <div class="proj-body">
+            <span class="proj-cat">Communication</span>
+            <h4>Cartes de visite</h4>
+            <p>Design de cartes de visite professionnelles.</p>
+          </div>
+        </div>
+
+        <div class="glass-panel proj-card" data-category="marketing" data-reveal>
+          <div class="proj-thumb">
+            <img src="images/slide_21.jpg" alt="Packaging produit" loading="lazy" />
+            <div class="proj-overlay"><span>Voir le projet</span></div>
+          </div>
+          <div class="proj-body">
+            <span class="proj-cat">Marketing</span>
+            <h4>Packaging produit</h4>
+            <p>Conception d'un packaging adapté à la cible et au marché.</p>
+          </div>
+        </div>
+
+        <div class="glass-panel proj-card" data-category="communication" data-reveal>
+          <div class="proj-thumb">
+            <img src="images/slide_22.jpg" alt="Affiche publicitaire" loading="lazy" />
+            <div class="proj-overlay"><span>Voir le projet</span></div>
+          </div>
+          <div class="proj-body">
+            <span class="proj-cat">Communication</span>
+            <h4>Affiche publicitaire</h4>
+            <p>Création d'une affiche pour une campagne de notoriété.</p>
+          </div>
+        </div>
+
+        <div class="glass-panel proj-card" data-category="communication" data-reveal>
+          <div class="proj-thumb">
+            <img src="images/slide_23.jpg" alt="Site web Maison Pell" loading="lazy" />
+            <div class="proj-overlay"><span>Voir le projet</span></div>
+          </div>
+          <div class="proj-body">
+            <span class="proj-cat">Communication</span>
+            <h4>Site web Maison Pell</h4>
+            <p>Conception et maquette d'un site e-commerce.</p>
+          </div>
+        </div>
+
+        <div class="glass-panel proj-card" data-category="marketing" data-reveal>
+          <div class="proj-thumb">
+            <img src="images/slide_25.jpg" alt="Planning projet Gantt" loading="lazy" />
+            <div class="proj-overlay"><span>Voir le projet</span></div>
+          </div>
+          <div class="proj-body">
+            <span class="proj-cat">Gestion projet</span>
+            <h4>Planning Gantt</h4>
+            <p>Planification de projet avec diagramme de Gantt.</p>
+          </div>
+        </div>
+
+        <div class="glass-panel proj-card" data-category="marketing" data-reveal>
+          <div class="proj-thumb">
+            <img src="images/slide_26.jpg" alt="Étude trek" loading="lazy" />
+            <div class="proj-overlay"><span>Voir le projet</span></div>
+          </div>
+          <div class="proj-body">
+            <span class="proj-cat">Marketing</span>
+            <h4>Étude marché Trek</h4>
+            <p>Analyse de marché et positionnement pour un produit outdoor.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       SECTION 5 — COMPÉTENCES
+  ════════════════════════════════════ -->
+  <section id="skills" data-section="skills">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="section-tag">Savoir-faire</span>
+        <h2>Compétences</h2>
+      </div>
+
+      <div class="skills-grid" data-reveal>
+
+        <div class="glass-panel skill-domain">
+          <div class="skill-domain-icon">🌐</div>
+          <h3>Commerce International</h3>
+          <div class="skill-bars">
+            <div class="skill-bar-row"><span>Développement commercial international</span><div class="skill-bar"><div class="skill-fill" style="--w:85%"></div></div></div>
+            <div class="skill-bar-row"><span>Analyse de marché</span><div class="skill-bar"><div class="skill-fill" style="--w:80%"></div></div></div>
+            <div class="skill-bar-row"><span>Négociation interculturelle</span><div class="skill-bar"><div class="skill-fill" style="--w:75%"></div></div></div>
+            <div class="skill-bar-row"><span>Sourcing / Veille fournisseurs</span><div class="skill-bar"><div class="skill-fill" style="--w:70%"></div></div></div>
+          </div>
+        </div>
+
+        <div class="glass-panel skill-domain">
+          <div class="skill-domain-icon">📱</div>
+          <h3>Communication Digitale</h3>
+          <div class="skill-bars">
+            <div class="skill-bar-row"><span>Création de contenu vidéo</span><div class="skill-bar"><div class="skill-fill" style="--w:80%"></div></div></div>
+            <div class="skill-bar-row"><span>Social commerce / TikTok</span><div class="skill-bar"><div class="skill-fill" style="--w:75%"></div></div></div>
+            <div class="skill-bar-row"><span>Canva / Design graphique</span><div class="skill-bar"><div class="skill-fill" style="--w:82%"></div></div></div>
+            <div class="skill-bar-row"><span>Réseaux sociaux B2B/B2C</span><div class="skill-bar"><div class="skill-fill" style="--w:78%"></div></div></div>
+          </div>
+        </div>
+
+        <div class="glass-panel skill-domain">
+          <div class="skill-domain-icon">💼</div>
+          <h3>Commercial & Marketing</h3>
+          <div class="skill-bars">
+            <div class="skill-bar-row"><span>Prospection / Phoning</span><div class="skill-bar"><div class="skill-fill" style="--w:85%"></div></div></div>
+            <div class="skill-bar-row"><span>CRM & gestion clients</span><div class="skill-bar"><div class="skill-fill" style="--w:78%"></div></div></div>
+            <div class="skill-bar-row"><span>Marketing mix / stratégie</span><div class="skill-bar"><div class="skill-fill" style="--w:80%"></div></div></div>
+            <div class="skill-bar-row"><span>Appels d'offres (BPU/AE)</span><div class="skill-bar"><div class="skill-fill" style="--w:70%"></div></div></div>
+          </div>
+        </div>
+
+        <div class="glass-panel skill-domain">
+          <div class="skill-domain-icon">🗣</div>
+          <h3>Langues</h3>
+          <div class="skill-bars">
+            <div class="skill-bar-row"><span>Français (natif)</span><div class="skill-bar"><div class="skill-fill" style="--w:100%"></div></div></div>
+            <div class="skill-bar-row"><span>Anglais — TOEIC 885 (B2+)</span><div class="skill-bar"><div class="skill-fill" style="--w:88%"></div></div></div>
+            <div class="skill-bar-row"><span>Allemand — DSD I (B1/B2)</span><div class="skill-bar"><div class="skill-fill" style="--w:65%"></div></div></div>
+            <div class="skill-bar-row"><span>Mandarin — HSK 1</span><div class="skill-bar"><div class="skill-fill" style="--w:20%"></div></div></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Parcours -->
+      <div class="parcours-row" data-reveal>
+        <div class="glass-panel parcours-card">
+          <span class="parcours-date">2023 – Aujourd'hui</span>
+          <h4>BUT Techniques de Commercialisation</h4>
+          <p class="parcours-org">IUT de l'Indre – Issoudun</p>
+          <p class="parcours-spec">Option Commerce International</p>
+        </div>
+        <div class="glass-panel parcours-card">
+          <span class="parcours-date">2023</span>
+          <h4>Baccalauréat Général – Mention</h4>
+          <p class="parcours-org">Lycée Balzac – Tours</p>
+          <p class="parcours-spec">Spécialités : Mathématiques & Anglais</p>
+        </div>
+        <div class="glass-panel parcours-card parcours-certif">
+          <h4>Certifications</h4>
+          <div class="certif-row"><span>🇬🇧</span><div><strong>TOEIC 885</strong><br><small>B2+ · Anglais avancé</small></div></div>
+          <div class="certif-row"><span>🇩🇪</span><div><strong>DSD I – B1/B2</strong><br><small>Allemand avancé</small></div></div>
+          <div class="certif-row"><span>🇨🇳</span><div><strong>HSK 1</strong><br><small>Mandarin débutant</small></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       SECTION 6 — PROJET PRO (YIWU)
+  ════════════════════════════════════ -->
+  <section id="projet-pro" data-section="projet-pro">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="section-tag">Projet professionnel</span>
+        <h2>Mon projet &amp; ma vision</h2>
+      </div>
+
+      <div class="projpro-grid" data-reveal>
+
+        <div class="glass-panel projpro-main">
+          <div class="projpro-badge">Projet entrepreneurial</div>
+          <h3>Pont France–Chine<br><span>Intermédiation Yiwu</span></h3>
+          <p>
+            Yiwu est la capitale mondiale du sourcing. Des dizaines de milliers de fournisseurs, des millions de références — et pour une entreprise française qui veut y travailler, une jungle. Mon projet : être ce pont.
+          </p>
+          <p>
+            Non pas une agence import « clé en main », mais un service léger, crédible et réaliste : <strong>présélection de fournisseurs</strong>, qualification, comparaison d'offres, réduction de l'incertitude. Une première étape concrète avant de travailler avec la Chine.
+          </p>
+          <div class="projpro-offer">
+            <div class="offer-item">
+              <span class="offer-ico">🔍</span>
+              <div><strong>Présélection</strong><p>Identification et qualification de fournisseurs pertinents</p></div>
+            </div>
+            <div class="offer-item">
+              <span class="offer-ico">⚖️</span>
+              <div><strong>Comparaison</strong><p>Analyse et mise en perspective des offres reçues</p></div>
+            </div>
+            <div class="offer-item">
+              <span class="offer-ico">🌉</span>
+              <div><strong>Bridge</strong><p>Facilitation de la communication interculturelle France–Chine</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="projpro-side">
+          <div class="glass-panel projpro-now">
+            <span class="projpro-label">Maintenant</span>
+            <p>M'investir pleinement dans mes missions commerciales et marketing en Chine, construire une expertise terrain et développer mon réseau international.</p>
+          </div>
+          <div class="glass-panel projpro-soon">
+            <span class="projpro-label">Prochaine étape</span>
+            <p>Rejoindre une structure orientée commerce international, business development ou communication digitale — en France ou à l'étranger.</p>
+          </div>
+          <div class="glass-panel projpro-values">
+            <span class="projpro-label">Ce que je cherche</span>
+            <div class="values-chips">
+              <span>Défis internationaux</span>
+              <span>Responsabilités commerciales</span>
+              <span>Environnement multiculturel</span>
+              <span>Innovation</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       SECTION 7 — CONTACT
+  ════════════════════════════════════ -->
+  <section id="contact" data-section="contact">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="section-tag">Échangeons</span>
+        <h2>Me contacter</h2>
+        <p class="section-sub">Une opportunité, un projet, une question — je suis disponible.</p>
+      </div>
+
+      <div class="contact-grid" data-reveal>
+        <div class="glass-panel contact-card">
+          <a href="mailto:antoine.pornin.fr@gmail.com" class="contact-link">
+            <div class="contact-ico">✉️</div>
+            <div>
+              <span class="contact-label">Email</span>
+              <strong>antoine.pornin.fr@gmail.com</strong>
+            </div>
+            <svg class="contact-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8H13M9 4L13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="glass-panel contact-card">
+          <a href="tel:0683422198" class="contact-link">
+            <div class="contact-ico">📱</div>
+            <div>
+              <span class="contact-label">Téléphone</span>
+              <strong>06 83 42 21 98</strong>
+            </div>
+            <svg class="contact-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8H13M9 4L13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="glass-panel contact-card">
+          <a href="https://linkedin.com" target="_blank" rel="noopener" class="contact-link">
+            <div class="contact-ico">💼</div>
+            <div>
+              <span class="contact-label">LinkedIn</span>
+              <strong>Antoine Pornin</strong>
+            </div>
+            <svg class="contact-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8H13M9 4L13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════ -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="footer-logo">AP</span>
+          <div>
+            <strong>Antoine Pornin</strong>
+            <p>Commerce International &amp; Business Development</p>
+          </div>
+        </div>
+        <nav class="footer-nav" aria-label="Navigation footer">
+          <a href="#hero">Accueil</a>
+          <a href="#world">Mon Monde</a>
+          <a href="#experiences">Expériences</a>
+          <a href="#projects">Projets</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <div class="footer-meta">
+          <p>© 2026 Antoine Pornin · Tours, France</p>
+          <p>Portfolio v2 — Design spatial</p>
+        </div>
       </div>
     </div>
   </footer>
 
-  <script src="js/i18n.js"></script>
-  <script src="js/script.js"></script>
+  <!-- Three.js + Globe + Main -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/globe.js"></script>
+  <script src="js/main.js"></script>
+
 </body>
 </html>
