@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact – Antoine Pornin</title>
+  <meta name="description" content="Contacter Antoine Pornin – étudiant en BUT TC Commerce International." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="contact">
+
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">AP</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" data-i18n="nav.home" data-nav="home">Accueil</a></li>
+        <li><a href="experiences.html" data-i18n="nav.experiences" data-nav="experiences">Expériences</a></li>
+        <li><a href="realisations.html" data-i18n="nav.realisations" data-nav="realisations">Réalisations</a></li>
+        <li><a href="parcours.html" data-i18n="nav.parcours" data-nav="parcours">Parcours</a></li>
+        <li><a href="competences.html" data-i18n="nav.competences" data-nav="competences">Compétences</a></li>
+        <li><a href="projet-pro.html" data-i18n="nav.projet" data-nav="projet-pro">Projet pro</a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="lang-switcher">
+          <button class="lang-switch-btn active" data-lang="fr">FR</button>
+          <button class="lang-switch-btn" data-lang="en">EN</button>
+          <button class="lang-switch-btn" data-lang="de">DE</button>
+          <button class="lang-switch-btn" data-lang="zh">中文</button>
+        </div>
+        <a href="cv.html" class="btn btn-outline-sm" data-i18n="nav.cv">Télécharger CV</a>
+        <a href="contact.html" class="btn btn-primary-sm" data-i18n="nav.contact">Me contacter</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="container">
+      <span class="page-hero-tag" data-i18n="contact.tag">Restons en contact</span>
+      <h1 data-i18n="contact.title">Me contacter</h1>
+      <p data-i18n="contact.desc">Vous souhaitez échanger sur une opportunité, un projet ou une collaboration ? Contactez-moi directement.</p>
+    </div>
+  </div>
+
+  <section class="section bg-dark">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info" data-aos="fade-right">
+          <div class="contact-item">
+            <div class="contact-icon">📱</div>
+            <div>
+              <span data-i18n="contact.phone.label">Téléphone</span>
+              <a href="tel:0683422198">06 83 42 21 98</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">✉</div>
+            <div>
+              <span data-i18n="contact.email.label">Email</span>
+              <a href="mailto:antoine.pornin.fr@gmail.com">antoine.pornin.fr@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <span data-i18n="contact.loc.label">Localisation</span>
+              <p>Tours, France</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🌐</div>
+            <div>
+              <span data-i18n="contact.profile.label">Profil</span>
+              <p data-i18n="contact.profile.text">Ouvert aux opportunités en marketing, communication, commerce international et business development</p>
+            </div>
+          </div>
+          <a href="mailto:antoine.pornin.fr@gmail.com" class="btn btn-gold" data-i18n="contact.email.btn">Envoyer un email direct</a>
+        </div>
+
+        <form class="contact-form" data-aos="fade-left" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name" data-i18n="contact.form.name">Nom</label>
+              <input type="text" id="name" name="name" data-i18n-placeholder="contact.form.ph.name" placeholder="Votre nom" required />
+            </div>
+            <div class="form-group">
+              <label for="email" data-i18n="contact.form.email">Email</label>
+              <input type="email" id="email" name="email" data-i18n-placeholder="contact.form.ph.email" placeholder="votre@email.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="subject" data-i18n="contact.form.subject">Objet</label>
+            <input type="text" id="subject" name="subject" data-i18n-placeholder="contact.form.ph.subject" placeholder="Objet de votre message" required />
+          </div>
+          <div class="form-group">
+            <label for="message" data-i18n="contact.form.message">Message</label>
+            <textarea id="message" name="message" rows="5" data-i18n-placeholder="contact.form.ph.message" placeholder="Votre message..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" data-i18n="contact.form.send">Envoyer le message</button>
+          <p class="form-note" data-i18n="contact.form.note">En cliquant sur Envoyer, votre messagerie par défaut s'ouvrira.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="footer-logo">AP</span>
+          <p>Antoine Pornin<br><small data-i18n="footer.subtitle">Commerce International & Business Development</small></p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html" data-i18n="nav.home">Accueil</a>
+          <a href="experiences.html" data-i18n="nav.experiences">Expériences</a>
+          <a href="realisations.html" data-i18n="nav.realisations">Réalisations</a>
+          <a href="contact.html" data-i18n="nav.contact">Contact</a>
+        </div>
+        <div class="footer-contact">
+          <a href="mailto:antoine.pornin.fr@gmail.com">antoine.pornin.fr@gmail.com</a>
+          <a href="tel:0683422198">06 83 42 21 98</a>
+          <a href="cv.html" class="btn-footer-cv" data-i18n="nav.cv">Télécharger le CV</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Antoine Pornin · Tours, France</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

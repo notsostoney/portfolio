@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compétences – Antoine Pornin</title>
+  <meta name="description" content="Compétences en marketing, vente, communication, numérique et langues d'Antoine Pornin." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="competences">
+
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">AP</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" data-i18n="nav.home" data-nav="home">Accueil</a></li>
+        <li><a href="experiences.html" data-i18n="nav.experiences" data-nav="experiences">Expériences</a></li>
+        <li><a href="realisations.html" data-i18n="nav.realisations" data-nav="realisations">Réalisations</a></li>
+        <li><a href="parcours.html" data-i18n="nav.parcours" data-nav="parcours">Parcours</a></li>
+        <li><a href="competences.html" data-i18n="nav.competences" data-nav="competences">Compétences</a></li>
+        <li><a href="projet-pro.html" data-i18n="nav.projet" data-nav="projet-pro">Projet pro</a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="lang-switcher">
+          <button class="lang-switch-btn active" data-lang="fr">FR</button>
+          <button class="lang-switch-btn" data-lang="en">EN</button>
+          <button class="lang-switch-btn" data-lang="de">DE</button>
+          <button class="lang-switch-btn" data-lang="zh">中文</button>
+        </div>
+        <a href="cv.html" class="btn btn-outline-sm" data-i18n="nav.cv">Télécharger CV</a>
+        <a href="contact.html" class="btn btn-primary-sm" data-i18n="nav.contact">Me contacter</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="container">
+      <span class="page-hero-tag" data-i18n="skills.tag">Savoir-faire</span>
+      <h1 data-i18n="skills.title">Mes compétences</h1>
+      <p data-i18n="real.desc">Projets académiques, professionnels et personnels réalisés tout au long de mon parcours.</p>
+    </div>
+  </div>
+
+  <section class="section bg-dark">
+    <div class="container">
+      <div class="skills-grid">
+
+        <div class="skill-block" data-aos="fade-up">
+          <div class="skill-block-icon">📊</div>
+          <h3 data-i18n="skills.block1">Marketing</h3>
+          <div class="skill-tags">
+            <span>Marketing mix</span><span>Analyse de marché</span><span>Analyse concurrentielle</span>
+            <span>Benchmark</span><span>PESTEL</span><span>Segmentation</span>
+            <span>Positionnement</span><span>Comportement consommateur</span>
+            <span>Image de marque</span><span>Prisme de Kapferer</span>
+          </div>
+        </div>
+
+        <div class="skill-block" data-aos="fade-up" data-delay="100">
+          <div class="skill-block-icon">💼</div>
+          <h3 data-i18n="skills.block2">Vente & Développement commercial</h3>
+          <div class="skill-tags">
+            <span>Prospection</span><span>Phoning</span><span>Plan de découverte</span>
+            <span>Argumentation</span><span>Gestion des objections</span>
+            <span>Création de devis</span><span>Outils d'aide à la vente</span>
+            <span>Fidélisation client</span><span>Négociation</span>
+            <span>Animation commerciale</span>
+          </div>
+        </div>
+
+        <div class="skill-block" data-aos="fade-up" data-delay="150">
+          <div class="skill-block-icon">🎨</div>
+          <h3 data-i18n="skills.block3">Communication</h3>
+          <div class="skill-tags">
+            <span>Plan de communication</span><span>Supports print & digital</span>
+            <span>Affiches</span><span>Plaquettes commerciales</span>
+            <span>Réseaux sociaux</span><span>Packaging</span>
+            <span>Communication visuelle</span><span>Adaptation interculturelle</span>
+            <span>Vidéos courtes commerciales</span>
+          </div>
+        </div>
+
+        <div class="skill-block" data-aos="fade-up" data-delay="200">
+          <div class="skill-block-icon">⚙️</div>
+          <h3 data-i18n="skills.block4">Transverse & Numérique</h3>
+          <div class="skill-tags">
+            <span>Pack Office</span><span>Excel</span><span>Canva</span>
+            <span>CRM</span><span>Notion</span><span>ChatGPT / IA</span>
+            <span>Gestion de projet</span><span>Planning Gantt</span>
+            <span>Organisation</span><span>Travail en équipe</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="languages-row" data-aos="fade-up">
+        <h3 data-i18n="skills.lang.title">Langues</h3>
+        <div class="lang-grid">
+          <div class="lang-item">
+            <div class="lang-label">
+              <span class="lang-flag">🇫🇷</span>
+              <span>Français</span>
+              <span class="lang-level" data-i18n="skills.lang.fr">Natif</span>
+            </div>
+            <div class="lang-bar"><div class="lang-fill" style="--pct:100%"></div></div>
+          </div>
+          <div class="lang-item">
+            <div class="lang-label">
+              <span class="lang-flag">🇬🇧</span>
+              <span>Anglais</span>
+              <span class="lang-level" data-i18n="skills.lang.en">B2+ · TOEIC 885</span>
+            </div>
+            <div class="lang-bar"><div class="lang-fill" style="--pct:82%"></div></div>
+          </div>
+          <div class="lang-item">
+            <div class="lang-label">
+              <span class="lang-flag">🇩🇪</span>
+              <span>Allemand</span>
+              <span class="lang-level" data-i18n="skills.lang.de">B1/B2 · DSD I</span>
+            </div>
+            <div class="lang-bar"><div class="lang-fill" style="--pct:68%"></div></div>
+          </div>
+          <div class="lang-item">
+            <div class="lang-label">
+              <span class="lang-flag">🇨🇳</span>
+              <span>Mandarin</span>
+              <span class="lang-level" data-i18n="skills.lang.zh">Bases</span>
+            </div>
+            <div class="lang-bar"><div class="lang-fill" style="--pct:20%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="footer-logo">AP</span>
+          <p>Antoine Pornin<br><small data-i18n="footer.subtitle">Commerce International & Business Development</small></p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html" data-i18n="nav.home">Accueil</a>
+          <a href="experiences.html" data-i18n="nav.experiences">Expériences</a>
+          <a href="realisations.html" data-i18n="nav.realisations">Réalisations</a>
+          <a href="contact.html" data-i18n="nav.contact">Contact</a>
+        </div>
+        <div class="footer-contact">
+          <a href="mailto:antoine.pornin.fr@gmail.com">antoine.pornin.fr@gmail.com</a>
+          <a href="tel:0683422198">06 83 42 21 98</a>
+          <a href="cv.html" class="btn-footer-cv" data-i18n="nav.cv">Télécharger le CV</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Antoine Pornin · Tours, France</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

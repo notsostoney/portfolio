@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Réalisations – Antoine Pornin</title>
+  <meta name="description" content="Projets académiques, professionnels et personnels d'Antoine Pornin." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="realisations">
+
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">AP</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" data-i18n="nav.home" data-nav="home">Accueil</a></li>
+        <li><a href="experiences.html" data-i18n="nav.experiences" data-nav="experiences">Expériences</a></li>
+        <li><a href="realisations.html" data-i18n="nav.realisations" data-nav="realisations">Réalisations</a></li>
+        <li><a href="parcours.html" data-i18n="nav.parcours" data-nav="parcours">Parcours</a></li>
+        <li><a href="competences.html" data-i18n="nav.competences" data-nav="competences">Compétences</a></li>
+        <li><a href="projet-pro.html" data-i18n="nav.projet" data-nav="projet-pro">Projet pro</a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="lang-switcher">
+          <button class="lang-switch-btn active" data-lang="fr">FR</button>
+          <button class="lang-switch-btn" data-lang="en">EN</button>
+          <button class="lang-switch-btn" data-lang="de">DE</button>
+          <button class="lang-switch-btn" data-lang="zh">中文</button>
+        </div>
+        <a href="cv.html" class="btn btn-outline-sm" data-i18n="nav.cv">Télécharger CV</a>
+        <a href="contact.html" class="btn btn-primary-sm" data-i18n="nav.contact">Me contacter</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="container">
+      <span class="page-hero-tag" data-i18n="real.tag">Projets & Livrables</span>
+      <h1 data-i18n="real.title">Mes réalisations</h1>
+      <p data-i18n="real.desc">Projets académiques, professionnels et personnels réalisés tout au long de mon parcours.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="filter-bar" data-aos="fade-up">
+        <button class="filter-btn active" data-filter="all" data-i18n="real.filter.all">Tous</button>
+        <button class="filter-btn" data-filter="marketing" data-i18n="real.filter.marketing">Marketing</button>
+        <button class="filter-btn" data-filter="vente" data-i18n="real.filter.vente">Vente</button>
+        <button class="filter-btn" data-filter="communication" data-i18n="real.filter.communication">Communication</button>
+        <button class="filter-btn" data-filter="transverse" data-i18n="real.filter.transverse">Transverse</button>
+      </div>
+
+      <div class="projects-grid" id="projectsGrid">
+
+        <div class="project-card" data-category="marketing" data-aos="fade-up">
+          <div class="project-visual">
+            <img src="images/slide_08.jpg" alt="Benchmark concurrentiel" class="project-thumb">
+            <span class="project-domain-badge">Marketing</span>
+          </div>
+          <div class="project-info">
+            <h3 data-i18n="real.p1.title">Benchmark concurrentiel – Communication</h3>
+            <p data-i18n="real.p1.desc">Analyse comparative des pratiques de communication d'acteurs du secteur réalisée lors du stage chez Clen.</p>
+            <div class="project-skills">
+              <span>Benchmark</span><span>Analyse concurrentielle</span><span>Communication</span>
+            </div>
+            <button class="btn-project" onclick="openModal('modal-benchmark')" data-i18n="real.view">Voir le projet →</button>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="marketing" data-aos="fade-up" data-delay="50">
+          <div class="project-visual">
+            <img src="images/slide_09.jpg" alt="Tableau de bord" class="project-thumb">
+            <span class="project-domain-badge">Marketing</span>
+          </div>
+          <div class="project-info">
+            <h3 data-i18n="real.p2.title">Tableau de bord de suivi de projet</h3>
+            <p data-i18n="real.p2.desc">Conception d'outils de suivi pour visualiser l'avancement, les indicateurs clés et le bon déroulement des actions.</p>
+            <div class="project-skills">
+              <span>Excel</span><span>Suivi de projet</span><span>Organisation</span>
+            </div>
+            <button class="btn-project" onclick="openModal('modal-dashboard')" data-i18n="real.view">Voir le projet →</button>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="marketing" data-aos="fade-up" data-delay="100">
+          <div class="project-visual">
+            <img src="images/slide_10.jpg" alt="Analyse de l'offre chocolat" class="project-thumb">
+            <span class="project-domain-badge">Marketing</span>
+          </div>
+          <div class="project-info">
+            <h3 data-i18n="real.p3.title">Analyse de l'offre – Marché du chocolat</h3>
+            <p data-i18n="real.p3.desc">Identification des principaux acteurs, gammes, positionnements et tendances du marché du chocolat.</p>
+            <div class="project-skills">
+              <span>Analyse de marché</span><span>Segmentation</span><span>Concurrence</span>
+            </div>
+            <button class="btn-project" onclick="openModal('modal-choco')" data-i18n="real.view">Voir le projet →</button>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="marketing" data-aos="fade-up" data-delay="150">
+          <div class="project-visual">
+            <img src="images/slide_11.jpg" alt="Losange de Kapferer – Evian" class="project-thumb">
+            <span class="project-domain-badge">Marketing</span>
+          </div>
+          <div class="project-info">
+            <h3 data-i18n="real.p4.title">Analyse de marque – Evian & Losange de Kapferer</h3>
+            <p data-i18n="real.p4.desc">Application du prisme d'identité de Kapferer pour analyser l'identité et le positionnement de la marque Evian.</p>
+            <div class="project-skills">
+              <span>Branding</span><span>Image de marque</span><span>Analyse stratégique</span>
+            </div>
+            <button class="btn-project" onclick="openModal('modal-evian')" data-i18n="real.view">Voir le projet →</button>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="marketing" data-aos="fade-up" data-delay="200">
+          <div class="project-visual">
+            <img src="images/slide_12.jpg" alt="Analyse PESTEL" class="project-thumb">
+            <span class="project-domain-badge">Marketing</span>
+          </div>
+          <div class="project-info">
+            <h3 data-i18n="real.p5.title">Analyse PESTEL – Marché du chocolat</h3>
+            <p data-i18n="real.p5.desc">Identification des facteurs externes influençant le marché : inflation des matières premières, enjeux politiques et santé.</p>
+            <div class="project-skills">
+              <span>PESTEL</span><span>Veille</span><span>Analyse environnementale</span>
+            </div>
+            <button class="btn-project" onclick="openModal('modal-pestel')" data-i18n="real.view">Voir le projet →</button>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="vente" data-aos="fade-up" data-delay="250">
+          <div class="project-visual">
+            <img src="images/slide_15.jpg" alt="Création de devis" class="project-thumb">
+            <span class="project-domain-badge">Vente</span>
+          </div>
+          <div class="project-info">
+            <h3 data-i18n="real.p6.title">Création de devis commercial</h3>
+            <p data-i18n="real.p6.desc">Conception d'un devis structuré et adaptable pour aborder un entretien de négociation avec une offre claire et professionnelle.</p>
+            <div class="project-skills">
+              <span>Vente</span><span>Négociation</span><span>Chiffrage</span>
+            </div>
+            <button class="btn-project" onclick="openModal('modal-devis')" data-i18n="real.view">Voir le projet →</button>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="vente" data-aos="fade-up" data-delay="300">
+          <div class="project-visual">
+            <img src="images/slide_16.jpg" alt="Plaquette commerciale" class="project-thumb">
+            <span class="project-domain-badge">Vente / Communication</span>
+          </div>
+          <div class="project-info">
+            <h3 data-i18n="real.p7.title">Plaquette commerciale recto-verso</h3>
+            <p data-i18n="real.p7.desc">Conception d'une plaquette commerciale pour présenter offres, services et tarifs de manière claire et attractive.</p>
+            <div class="project-skills">
+              <span>Canva</span><span>Communication commerciale</span><span>Design</span>
+            </div>
+            <button class="btn-project" onclick="openModal('modal-plaquette')" data-i18n="real.view">Voir le projet →</button>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="vente" data-aos="fade-up" data-delay="350">
+          <div class="project-visual">
+            <img src="images/slide_17.jpg" alt="CROC – Traitement des objections" class="project-thumb">
+            <span class="project-domain-badge">Vente</span>
+          </div>
+          <div class="project-info">
+            <h3 data-i18n="real.p8.title">CROC & Traitement des objections</h3>
+            <p data-i18n="real.p8.desc">Création d'un outil CROC pour structurer les réponses aux barrages et objections lors d'une prospection commerciale.</p>
+            <div class="project-skills">
+              <span>Prospection</span><span>Argumentation</span><span>Relation client</span>
+            </div>
+            <button class="btn-project" onclick="openModal('modal-croc')" data-i18n="real.view">Voir le projet →</button>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="communication" data-aos="fade-up" data-delay="400">
+          <div class="project-visual">
+            <img src="images/slide_18.jpg" alt="Cartes de visite" class="project-thumb">
+            <span class="project-domain-badge">Communication</span>
+          </div>
+          <div class="project-info">
+            <h3 data-i18n="real.p9.title">Cartes de visite</h3>
+            <p data-i18n="real.p9.desc">Conception de cartes de visite respectant l'identité visuelle d'une entreprise : logo, couleurs, typographie et hiérarchie.</p>
+            <div class="project-skills">
+              <span>Identité visuelle</span><span>Design graphique</span><span>Communication professionnelle</span>
+            </div>
+            <button class="btn-project" onclick="openModal('modal-cartes')" data-i18n="real.view">Voir le projet →</button>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="communication" data-aos="fade-up" data-delay="450">
+          <div class="project-visual">
+            <img src="images/slide_21.jpg" alt="Packaging Sanex" class="project-thumb">
+            <span class="project-domain-badge">Communication</span>
+          </div>
+          <div class="project-info">
+            <h3 data-i18n="real.p10.title">Packaging Sanex</h3>
+            <p data-i18n="real.p10.desc">Conception d'un packaging respectant l'identité de marque Sanex : santé, simplicité, respect de la peau et clarté visuelle.</p>
+            <div class="project-skills">
+              <span>Packaging</span><span>Communication visuelle</span><span>Branding</span>
+            </div>
+            <button class="btn-project" onclick="openModal('modal-packaging')" data-i18n="real.view">Voir le projet →</button>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="communication" data-aos="fade-up" data-delay="500">
+          <div class="project-visual">
+            <img src="images/slide_22.jpg" alt="Affiche Paris" class="project-thumb">
+            <span class="project-domain-badge">Communication</span>
+          </div>
+          <div class="project-info">
+            <h3 data-i18n="real.p11.title">Affiche sortie Commerce International – Paris</h3>
+            <p data-i18n="real.p11.desc">Création d'une affiche pour promouvoir une sortie Commerce International à Paris : information claire et engageante.</p>
+            <div class="project-skills">
+              <span>Affichage</span><span>Hiérarchie visuelle</span><span>Événementiel</span>
+            </div>
+            <button class="btn-project" onclick="openModal('modal-affiche')" data-i18n="real.view">Voir le projet →</button>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="communication" data-aos="fade-up" data-delay="550">
+          <div class="project-visual">
+            <img src="images/slide_23.jpg" alt="Site internet Maison Pell" class="project-thumb">
+            <span class="project-domain-badge">Communication / Digital</span>
+          </div>
+          <div class="project-info">
+            <h3 data-i18n="real.p12.title">Site internet – Parfum solide</h3>
+            <p data-i18n="real.p12.desc">Conception sur Canva d'un site web one-page immersif pour un parfum solide : univers naturel, premium et sensoriel.</p>
+            <div class="project-skills">
+              <span>Webdesign</span><span>Storytelling</span><span>Identité visuelle</span>
+            </div>
+            <button class="btn-project" onclick="openModal('modal-parfum-site')" data-i18n="real.view">Voir le projet →</button>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="transverse" data-aos="fade-up" data-delay="600">
+          <div class="project-visual">
+            <img src="images/slide_25.jpg" alt="Planning Gantt" class="project-thumb">
+            <span class="project-domain-badge">Transverse</span>
+          </div>
+          <div class="project-info">
+            <h3 data-i18n="real.p13.title">Planning Gantt</h3>
+            <p data-i18n="real.p13.desc">Élaboration d'un planning Gantt pour une campagne de récompense franchisés : planification, coordination et suivi.</p>
+            <div class="project-skills">
+              <span>Gestion de projet</span><span>Planification</span><span>Organisation</span>
+            </div>
+            <button class="btn-project" onclick="openModal('modal-gantt')" data-i18n="real.view">Voir le projet →</button>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="transverse" data-aos="fade-up" data-delay="650">
+          <div class="project-visual">
+            <img src="images/slide_26.jpg" alt="Trek Tours Endurance" class="project-thumb">
+            <span class="project-domain-badge">Transverse</span>
+          </div>
+          <div class="project-info">
+            <h3 data-i18n="real.p14.title">Engagement associatif – Trek Tours Endurance</h3>
+            <p data-i18n="real.p14.desc">Membre actif de Trek Tours Endurance : organisation de deux trails annuels, sécurisation du parcours, missions de commissaire.</p>
+            <div class="project-skills">
+              <span>Organisation</span><span>Gestion du stress</span><span>Travail en équipe</span>
+            </div>
+            <button class="btn-project" onclick="openModal('modal-trek')" data-i18n="real.view">Voir le projet →</button>
+          </div>
+        </div>
+
+        <div class="project-card featured-project" data-category="transverse" data-aos="fade-up" data-delay="700">
+          <div class="project-visual">
+            <img src="images/slide_23.jpg" alt="Projet entrepreneurial – Parfum solide" class="project-thumb">
+            <span class="project-domain-badge">Entrepreneuriat</span>
+          </div>
+          <div class="project-info">
+            <h3 data-i18n="real.p15.title">Projet entrepreneurial – Parfum solide</h3>
+            <p data-i18n="real.p15.desc">Co-création d'un concept de parfum solide innovant : étude de marché, business model, prototypage et pitch final devant jury.</p>
+            <div class="project-skills">
+              <span>Entrepreneuriat</span><span>Étude de marché</span><span>Business model</span><span>Pitch</span>
+            </div>
+            <button class="btn-project" onclick="openModal('modal-parfum')" data-i18n="real.view">Voir le projet →</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="footer-logo">AP</span>
+          <p>Antoine Pornin<br><small data-i18n="footer.subtitle">Commerce International & Business Development</small></p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html" data-i18n="nav.home">Accueil</a>
+          <a href="experiences.html" data-i18n="nav.experiences">Expériences</a>
+          <a href="realisations.html" data-i18n="nav.realisations">Réalisations</a>
+          <a href="contact.html" data-i18n="nav.contact">Contact</a>
+        </div>
+        <div class="footer-contact">
+          <a href="mailto:antoine.pornin.fr@gmail.com">antoine.pornin.fr@gmail.com</a>
+          <a href="tel:0683422198">06 83 42 21 98</a>
+          <a href="cv.html" class="btn-footer-cv" data-i18n="nav.cv">Télécharger le CV</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Antoine Pornin · Tours, France</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
