@@ -137,36 +137,33 @@
     }
 
     buildEarth() {
-      /* Main sphere — grey monochrome, minimalist, NO specular hotspot */
+      /* Earth surface texture — continents, oceans, clouds */
+      const loader = new THREE.TextureLoader();
+      loader.crossOrigin = 'anonymous';
+
+      const earthTex = loader.load(
+        'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r128/examples/textures/land_ocean_ice_cloud_2048.jpg'
+      );
+
       const sGeo = new THREE.SphereGeometry(1, 72, 72);
       const sMat = new THREE.MeshPhongMaterial({
-        color:     new THREE.Color(0x5a6070),  // medium-dark grey
-        shininess: 2,                           // nearly matte
-        specular:  new THREE.Color(0x0a0a0f),  // almost black — no bright highlight
+        map:       earthTex,
+        shininess: 4,                          // nearly matte — no blown-out hotspot
+        specular:  new THREE.Color(0x080810),  // near-black specular
       });
       const sphere = new THREE.Mesh(sGeo, sMat);
       this.globeGroup.add(sphere);
       this.earthMesh = sphere;
 
-      /* Latitude / longitude grid — visible lines on dark sphere */
-      const gridGeo = new THREE.SphereGeometry(1.003, 24, 12);
-      const gridMat = new THREE.MeshBasicMaterial({
-        color:       0xffffff,
-        wireframe:   true,
+      /* Thin atmosphere halo */
+      const atmGeo = new THREE.SphereGeometry(1.07, 36, 36);
+      const atmMat = new THREE.MeshBasicMaterial({
+        color:       0x4488ff,
         transparent: true,
-        opacity:     0.10,
-      });
-      this.globeGroup.add(new THREE.Mesh(gridGeo, gridMat));
-
-      /* Soft dark rim to give depth illusion */
-      const rimGeo = new THREE.SphereGeometry(1.12, 32, 32);
-      const rimMat = new THREE.MeshBasicMaterial({
-        color:       0x000010,
-        transparent: true,
-        opacity:     0.45,
+        opacity:     0.045,
         side:        THREE.BackSide,
       });
-      this.globeGroup.add(new THREE.Mesh(rimGeo, rimMat));
+      this.globeGroup.add(new THREE.Mesh(atmGeo, atmMat));
     }
 
     buildPins() {
@@ -228,18 +225,13 @@
     }
 
     setupLights() {
-      /* Soft ambient — prevents pitch-black shadow side */
-      this.scene.add(new THREE.AmbientLight(0xffffff, 0.38));
+      /* High ambient so texture is readable on all sides, no dark hemisphere */
+      this.scene.add(new THREE.AmbientLight(0xffffff, 0.82));
 
-      /* Main light — gentle from top-left, low intensity so no blown-out hotspot */
-      const sun = new THREE.DirectionalLight(0xdde0ee, 0.65);
-      sun.position.set(-3, 4, 5);
+      /* Single soft directional — just enough to give 3D depth without hotspot */
+      const sun = new THREE.DirectionalLight(0xfff6e8, 0.55);
+      sun.position.set(5, 3, 5);
       this.scene.add(sun);
-
-      /* Subtle back fill to keep night side visible */
-      const back = new THREE.DirectionalLight(0x8899bb, 0.18);
-      back.position.set(3, -3, -4);
-      this.scene.add(back);
     }
 
     /* ── EVENTS ─────────────────────────────────────────────── */
