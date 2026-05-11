@@ -137,33 +137,33 @@
     }
 
     buildEarth() {
-      /* Main sphere — grey monochrome, minimalist */
+      /* Main sphere — grey monochrome, minimalist, NO specular hotspot */
       const sGeo = new THREE.SphereGeometry(1, 72, 72);
       const sMat = new THREE.MeshPhongMaterial({
-        color:     new THREE.Color(0x8a8fa8),
-        shininess: 28,
-        specular:  new THREE.Color(0x9090aa),
+        color:     new THREE.Color(0x5a6070),  // medium-dark grey
+        shininess: 2,                           // nearly matte
+        specular:  new THREE.Color(0x0a0a0f),  // almost black — no bright highlight
       });
       const sphere = new THREE.Mesh(sGeo, sMat);
       this.globeGroup.add(sphere);
       this.earthMesh = sphere;
 
-      /* Subtle latitude/longitude grid overlay */
-      const gridGeo = new THREE.SphereGeometry(1.002, 18, 9);
+      /* Latitude / longitude grid — visible lines on dark sphere */
+      const gridGeo = new THREE.SphereGeometry(1.003, 24, 12);
       const gridMat = new THREE.MeshBasicMaterial({
         color:       0xffffff,
         wireframe:   true,
         transparent: true,
-        opacity:     0.055,
+        opacity:     0.10,
       });
       this.globeGroup.add(new THREE.Mesh(gridGeo, gridMat));
 
-      /* Soft rim glow */
-      const rimGeo = new THREE.SphereGeometry(1.14, 24, 24);
+      /* Soft dark rim to give depth illusion */
+      const rimGeo = new THREE.SphereGeometry(1.12, 32, 32);
       const rimMat = new THREE.MeshBasicMaterial({
-        color:       0xccccee,
+        color:       0x000010,
         transparent: true,
-        opacity:     0.04,
+        opacity:     0.45,
         side:        THREE.BackSide,
       });
       this.globeGroup.add(new THREE.Mesh(rimGeo, rimMat));
@@ -177,7 +177,7 @@
         const pos = latLonToVec3(loc.lat, loc.lon, 1.015);
 
         /* Pin sphere */
-        const dotGeo = new THREE.SphereGeometry(0.022, 16, 16);
+        const dotGeo = new THREE.SphereGeometry(0.028, 16, 16);
         const dotMat = new THREE.MeshBasicMaterial({ color: loc.colorHex });
         const dot    = new THREE.Mesh(dotGeo, dotMat);
         dot.position.copy(pos);
@@ -186,14 +186,14 @@
         this.pinMeshes.push(dot);
 
         /* Glow halo */
-        const haloGeo = new THREE.SphereGeometry(0.04, 16, 16);
-        const haloMat = new THREE.MeshBasicMaterial({ color: loc.colorHex, transparent: true, opacity: 0.20 });
+        const haloGeo = new THREE.SphereGeometry(0.055, 16, 16);
+        const haloMat = new THREE.MeshBasicMaterial({ color: loc.colorHex, transparent: true, opacity: 0.28 });
         const halo    = new THREE.Mesh(haloGeo, haloMat);
         halo.position.copy(pos);
         this.pinsGroup.add(halo);
 
         /* Pulse ring (torus) */
-        const ringGeo = new THREE.TorusGeometry(0.048, 0.003, 8, 36);
+        const ringGeo = new THREE.TorusGeometry(0.055, 0.003, 8, 36);
         const ringMat = new THREE.MeshBasicMaterial({ color: loc.colorHex, transparent: true, opacity: 0.55 });
         const ring    = new THREE.Mesh(ringGeo, ringMat);
         ring.position.copy(pos);
@@ -228,15 +228,18 @@
     }
 
     setupLights() {
-      this.scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+      /* Soft ambient — prevents pitch-black shadow side */
+      this.scene.add(new THREE.AmbientLight(0xffffff, 0.38));
 
-      const sun = new THREE.DirectionalLight(0xffffff, 1.2);
-      sun.position.set(4, 3, 5);
+      /* Main light — gentle from top-left, low intensity so no blown-out hotspot */
+      const sun = new THREE.DirectionalLight(0xdde0ee, 0.65);
+      sun.position.set(-3, 4, 5);
       this.scene.add(sun);
 
-      const fill = new THREE.DirectionalLight(0xaaaacc, 0.25);
-      fill.position.set(-4, -2, -3);
-      this.scene.add(fill);
+      /* Subtle back fill to keep night side visible */
+      const back = new THREE.DirectionalLight(0x8899bb, 0.18);
+      back.position.set(3, -3, -4);
+      this.scene.add(back);
     }
 
     /* ── EVENTS ─────────────────────────────────────────────── */
