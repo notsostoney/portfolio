@@ -137,47 +137,33 @@
     }
 
     buildEarth() {
-      /* Main sphere with Earth texture */
-      const loader = new THREE.TextureLoader();
-      loader.crossOrigin = 'anonymous';
-
-      /* Earth day texture — free CDN */
-      const earthTex = loader.load(
-        'https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/land_ocean_ice_cloud_2048.jpg',
-        undefined,
-        undefined,
-        () => {
-          // Fallback material if texture fails
-          sphere.material.color.set(0x1a4b8c);
-        }
-      );
-
+      /* Main sphere — grey monochrome, minimalist */
       const sGeo = new THREE.SphereGeometry(1, 72, 72);
       const sMat = new THREE.MeshPhongMaterial({
-        map:       earthTex,
-        shininess: 8,
-        specular:  new THREE.Color(0x111122),
+        color:     new THREE.Color(0x8a8fa8),
+        shininess: 28,
+        specular:  new THREE.Color(0x9090aa),
       });
       const sphere = new THREE.Mesh(sGeo, sMat);
       this.globeGroup.add(sphere);
       this.earthMesh = sphere;
 
-      /* Atmosphere glow shell */
-      const atmGeo = new THREE.SphereGeometry(1.08, 40, 40);
-      const atmMat = new THREE.MeshBasicMaterial({
-        color:       0x4488FF,
+      /* Subtle latitude/longitude grid overlay */
+      const gridGeo = new THREE.SphereGeometry(1.002, 18, 9);
+      const gridMat = new THREE.MeshBasicMaterial({
+        color:       0xffffff,
+        wireframe:   true,
         transparent: true,
-        opacity:     0.06,
-        side:        THREE.BackSide,
+        opacity:     0.055,
       });
-      this.globeGroup.add(new THREE.Mesh(atmGeo, atmMat));
+      this.globeGroup.add(new THREE.Mesh(gridGeo, gridMat));
 
-      /* Outer soft glow */
-      const rimGeo = new THREE.SphereGeometry(1.16, 24, 24);
+      /* Soft rim glow */
+      const rimGeo = new THREE.SphereGeometry(1.14, 24, 24);
       const rimMat = new THREE.MeshBasicMaterial({
-        color:       0x2255AA,
+        color:       0xccccee,
         transparent: true,
-        opacity:     0.022,
+        opacity:     0.04,
         side:        THREE.BackSide,
       });
       this.globeGroup.add(new THREE.Mesh(rimGeo, rimMat));
@@ -242,14 +228,14 @@
     }
 
     setupLights() {
-      this.scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+      this.scene.add(new THREE.AmbientLight(0xffffff, 0.55));
 
-      const sun = new THREE.DirectionalLight(0xfff5E0, 1.4);
-      sun.position.set(5, 3, 5);
+      const sun = new THREE.DirectionalLight(0xffffff, 1.2);
+      sun.position.set(4, 3, 5);
       this.scene.add(sun);
 
-      const fill = new THREE.DirectionalLight(0x8899CC, 0.3);
-      fill.position.set(-3, -2, -3);
+      const fill = new THREE.DirectionalLight(0xaaaacc, 0.25);
+      fill.position.set(-4, -2, -3);
       this.scene.add(fill);
     }
 
